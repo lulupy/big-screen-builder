@@ -1,0 +1,93 @@
+import React from 'react';
+import { Form } from 'antd'; 
+import { IProperty } from '../../../../component';
+import FormItems from '../../../../FormItems';
+import { EditorContext } from '../../../EditorContext';
+import { IItem } from '../../../../item';
+
+
+interface IBaseConfigProps  {
+  properties: IProperty[];
+  item: IItem,
+};
+
+const rules = [ {required: true} ];
+
+const BaseConfig = ({ item, properties }: IBaseConfigProps) => {
+  const editor = React.useContext(EditorContext);
+  if(!editor) {
+    throw new Error('editor is necessary!');
+  }
+
+  const [form] = Form.useForm();
+  const fields = [
+    {name: 'x', label: '横向位移', type: 'number',rules, inputProps: {
+      onBlur: async () => {
+        const { x } = await form.validateFields(['x']);
+        item.setX(x);
+      },
+    }},
+    {name: 'y', label: '纵向位移', type: 'number', inputProps: {
+      onBlur: async () => {
+        const { y } = await form.validateFields(['y']);
+        item.setY(y);
+      },
+    }},
+    {name: 'width', label: '组件宽度', type: 'number', inputProps: {
+      onBlur: async () => {
+        const { width } = await form.validateFields(['width']);
+        item.setWidth(width);
+      },
+    }},
+    {name: 'height', label: '组件高度', type: 'number', inputProps: {
+      onBlur: async () => {
+        const { height } = await form.validateFields(['height']);
+        item.setHeight(height);
+      },
+    }},
+    ...properties.map(property => ({
+      ...property,
+      inputProps: {
+        onBlur: async () => {
+          const { name } = property;
+          const values = await form.validateFields([name]);
+          item.setPropConfigValue(name, values[name]);
+        },
+      }
+    }))
+  ];
+
+  // 监听拖拽改变size, position时, 同步表单数据
+  React.useEffect(() => {
+    item.on('shapeChange', (shape) => {
+      const values = {
+        ...shape.size,
+        ...shape.position,
+      };
+      form.setFieldsValue(values);
+    });
+  }, [item, form]);
+  // 切换currentItem时, 重置表单
+  React.useEffect(() => {
+    const shape = item.getShape();
+    const values = {
+      ...shape.size,
+      ...shape.position,
+      ...item.getPropConfigValue(),
+    };
+    form.setFieldsValue(values);
+  }, [item, form]);
+
+
+  return (
+    <Form
+      form={form}
+      labelCol={{ span: 10 }}
+      wrapperCol={{ span: 14 }}
+    >
+      <FormItems fields={fields} editor={editor} />
+    </Form>
+  );
+}
+
+export default React.memo(BaseConfig);

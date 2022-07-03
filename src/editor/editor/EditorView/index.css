@@ -1,0 +1,39 @@
+.eidtor {
+  box-sizing: border-box;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: #eee;
+}
+.editor__header{
+  display: flex;
+  flex-shrink: 0;
+  height: 50px;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+  background: #fff;
+}
+.editor__content{
+  flex-grow: 1;
+  flex-shrink: 1;
+  display: flex;
+  align-items: stretch;
+  overflow: hidden; /* 不加回导致高度子元素撑开, flex-shrink: 1;约束不起作用 */
+}
+
+.editor__menu,
+.editor__config{
+  width: 200px;
+  flex-shrink: 0;
+  background: #fff;
+}
+.editor__config{
+  width: 300px;
+}
+.editor__page{
+  flex-grow: 1;
+  overflow: scroll;
+  padding: 20px;
+}
