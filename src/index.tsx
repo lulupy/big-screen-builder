@@ -6,7 +6,9 @@ import DragAndResize from './demos/DragAndResize';
 import EditorDemo from './demos/EditorDemo';
 
 import reportWebVitals from './reportWebVitals';
-import 'antd/dist/antd.css';
+
+// https://github.com/ant-design/ant-design/issues/33327#issuecomment-997355323
+import 'antd/dist/antd.min.css';
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
