@@ -1,5 +1,8 @@
 import React, { SyntheticEvent } from 'react';
+import { IDataSource } from '../../../DataSource/AbstractDataSource';
+import StaticDataSource from '../../../DataSource/StaticDataSource';
 import { IItem } from '../../../item';
+import { IDataConfigValue } from '../../../item/IItem';
 import { IShape } from '../../IPage';
 
 interface IItemViewProps {
@@ -8,6 +11,7 @@ interface IItemViewProps {
 }
 const ItemView = ({ item, isActive } : IItemViewProps) => {
   const [{size, position}, setShape] = React.useState(item.getShape());
+  const [dataSource, setDataSoure] = React.useState<IDataSource | null>(null);
   const [properties, setProperties] = React.useState(item.getPropConfigValue());
   const { Component } = item.component;
 
@@ -22,11 +26,24 @@ const ItemView = ({ item, isActive } : IItemViewProps) => {
       setProperties({...properties})
     };
 
+    const handleDataConfigChange = (dataConfigValue: IDataConfigValue) => {
+      const { dataMaps, dataSource, filters } = dataConfigValue;
+      // todo: 创建dataSourceInstance对象的方式要修改, 用工厂模式还是其它?
+      const dataSourceInstance =  new StaticDataSource({
+        filters,
+        dataMaps,
+        json: dataSource.options.json,
+      });
+      setDataSoure(dataSourceInstance);
+    }
+
     item.on('shapeChange', handleShapeChange);
     item.on('propertiesChange', handlePropertiesChange);
+    item.on('dataConfigChange', handleDataConfigChange);
     return () => {
       item.off('shapeChange', handleShapeChange);
       item.off('propertiesChange', handlePropertiesChange);
+      item.off('dataConfigChange', handleDataConfigChange);
     }
   }, [item]);
   const handleSelectItem = React.useCallback((event: SyntheticEvent) => {
@@ -45,7 +62,7 @@ const ItemView = ({ item, isActive } : IItemViewProps) => {
         changePosition
       </button>
       <pre>{JSON.stringify(position, null ,2)}</pre>
-      <Component properties={properties} />
+      <Component properties={properties} dataSource={dataSource} />
     </div>
   );
 }

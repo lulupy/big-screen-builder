@@ -1,11 +1,28 @@
+import React from "react";
 import { ComponentModel } from "../../../editor";
+import { IDataSource } from "../../../editor/DataSource/AbstractDataSource";
 
 
-const Button = ({ properties, dataSource } : any) => { 
+interface IButtonProps {
+  properties: any,
+  dataSource: IDataSource | null,
+}
+
+const Button = ({ properties, dataSource } : IButtonProps) => {
+  const [data, setData] = React.useState<any>(null);
+  const getData = React.useCallback(async () => {
+    if(dataSource) {
+      setData(await dataSource.getData())
+    }
+  }, [dataSource]);
+  React.useEffect(() => {
+    getData();
+  }, [getData]);
   return (
     <div>
       <span>test</span>
       <pre>{JSON.stringify(properties, null, 2)}</pre>
+      <pre>{JSON.stringify(data, null, 2)}</pre>
     </div>
   );
 }
