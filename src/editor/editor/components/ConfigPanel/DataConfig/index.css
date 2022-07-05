@@ -1,0 +1,8 @@
+.data-config__title{
+  display: flex;
+  padding: 10px 0;
+  font-weight: 500;
+}
+.data-config__title > span:first-child{
+  margin-right: auto;
+}

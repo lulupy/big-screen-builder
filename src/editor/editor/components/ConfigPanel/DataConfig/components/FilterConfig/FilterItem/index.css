@@ -1,0 +1,39 @@
+.filter-item{
+  margin-bottom: 10px;
+}
+.filter-item__item{
+  padding-left: 10px;
+  position: relative;
+  bottom: -1px;
+  display: flex;
+  align-items: center;
+  height: 30px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+}
+.filter-item__name{
+  flex-grow: 1;
+}
+.filter-item__remove{
+  color: red;
+  padding: 0 10px;
+  line-height: 28px;
+  font-size: 12px;
+  border-right: 1px solid #ccc;
+}
+.filter-item__remove:hover{
+  font-weight: 600;
+  cursor: pointer;
+}
+.filter-item__toggle-btn{
+  font-size: 10px;
+  padding: 10px;
+  transition: transform 200ms ease-in;
+}
+.filter-item__toggle-btn:hover {
+  color: #1890ff;
+  cursor: pointer;
+}
+.filter-item__item.is-open .filter-item__toggle-btn{
+  transform: rotate(90deg);
+}

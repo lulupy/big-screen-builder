@@ -28,6 +28,7 @@
   width: 200px;
   flex-shrink: 0;
   background: #fff;
+  overflow-y: auto;
 }
 .editor__config{
   width: 300px;

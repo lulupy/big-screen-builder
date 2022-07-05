@@ -1,8 +1,13 @@
 import { ComponentModel } from "../../../editor";
 
 
-const Button = () => { 
-  return <div>Button</div>;
+const Button = ({ properties, dataSource } : any) => { 
+  return (
+    <div>
+      <span>test</span>
+      <pre>{JSON.stringify(properties, null, 2)}</pre>
+    </div>
+  );
 }
 
 const ViewButton = () => {
@@ -14,8 +19,8 @@ const rules = [
 ];
 
 const buttonComponent = new ComponentModel({
-  name: 'button',
-  label: '按钮',
+  name: 'test',
+  label: 'test',
   icon: '',
   properties: [
     { name: 'fontSize', label: 'gift字体大小',  type: 'input', rules },

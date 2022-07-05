@@ -2,7 +2,7 @@
 import { IComponent } from '../component';
 import { IItem } from '../item/IItem';
 import ItemModel from '../item/ItemModel';
-import BaseEmitter from '../BaseEmitter';
+import BaseEmitter from '../components/BaseEmitter';
 import { IPage, IPosition, ISize, ScaleMode, PageEvents } from './IPage';
 
 interface IPageModelOptions {

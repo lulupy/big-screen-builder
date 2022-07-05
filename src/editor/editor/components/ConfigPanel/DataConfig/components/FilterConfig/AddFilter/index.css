@@ -1,0 +1,14 @@
+.add-filter__add{
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+  bottom: -1px;
+}
+.add-filter__add-icon{
+  border: 1px solid #ccc;
+  padding: 7px;
+}
+.add-filter__add-icon:hover{
+  color: #1890ff;
+  border-color: #1890ff;
+}

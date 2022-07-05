@@ -1,19 +1,18 @@
 import React from 'react';
 import { Form } from 'antd'; 
-import { IProperty } from '../../../../component';
-import FormItems from '../../../../FormItems';
+import FormItems from '../../../../components/FormItems';
 import { EditorContext } from '../../../EditorContext';
 import { IItem } from '../../../../item';
 
 
 interface IBaseConfigProps  {
-  properties: IProperty[];
   item: IItem,
 };
 
 const rules = [ {required: true} ];
 
-const BaseConfig = ({ item, properties }: IBaseConfigProps) => {
+const BaseConfig = ({ item }: IBaseConfigProps) => {
+  const { properties } = item.component;
   const editor = React.useContext(EditorContext);
   if(!editor) {
     throw new Error('editor is necessary!');
@@ -67,6 +66,7 @@ const BaseConfig = ({ item, properties }: IBaseConfigProps) => {
       form.setFieldsValue(values);
     });
   }, [item, form]);
+
   // 切换currentItem时, 重置表单
   React.useEffect(() => {
     const shape = item.getShape();

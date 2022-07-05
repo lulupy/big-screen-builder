@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form } from 'antd';
-import { IProperty } from '../component';
-import { IEditor } from '../editor';
+import { IProperty } from '../../component';
+import { IEditor } from '../../editor';
 
 interface IFormItemsProps {
   fields: IProperty[],

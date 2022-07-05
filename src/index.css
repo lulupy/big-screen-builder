@@ -11,3 +11,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+/* react-collapse的css设置
+https://github.com/nkbt/react-collapse */
+.ReactCollapse--collapse {
+  transition: height 500ms;
+}

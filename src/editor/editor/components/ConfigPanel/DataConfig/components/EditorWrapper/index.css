@@ -1,0 +1,17 @@
+.editor-wrapper__header {
+  display: flex;
+  align-items: center;
+  height: 30px;
+  border: 1px solid #ccc;
+  border-bottom: none;
+  padding-left: 10px;
+  font-size: 12px;
+}
+.editor-wrapper__footer{
+  display: flex;
+  height: 40px;
+  border: 1px solid #ccc;
+  border-top: none;
+  justify-content: flex-end;
+  padding-right: 10px;
+}

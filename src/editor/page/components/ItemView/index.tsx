@@ -1,5 +1,6 @@
 import React, { SyntheticEvent } from 'react';
 import { IItem } from '../../../item';
+import { IShape } from '../../IPage';
 
 interface IItemViewProps {
   item: IItem,
@@ -7,11 +8,27 @@ interface IItemViewProps {
 }
 const ItemView = ({ item, isActive } : IItemViewProps) => {
   const [{size, position}, setShape] = React.useState(item.getShape());
+  const [properties, setProperties] = React.useState(item.getPropConfigValue());
+  const { Component } = item.component;
+
+
+
   React.useEffect(() => {
-    item.on('shapeChange', (shape) => {
+    const handleShapeChange = (shape: IShape) => {
       setShape(shape);
-    });
-  });
+    }
+
+    const handlePropertiesChange = (properties: { [key: string]: unknown }) => {
+      setProperties({...properties})
+    };
+
+    item.on('shapeChange', handleShapeChange);
+    item.on('propertiesChange', handlePropertiesChange);
+    return () => {
+      item.off('shapeChange', handleShapeChange);
+      item.off('propertiesChange', handlePropertiesChange);
+    }
+  }, [item]);
   const handleSelectItem = React.useCallback((event: SyntheticEvent) => {
     event.stopPropagation();
     event.preventDefault();
@@ -19,6 +36,7 @@ const ItemView = ({ item, isActive } : IItemViewProps) => {
   }, [item]);
   return (
     <div onClick={handleSelectItem} style={{ border: isActive ? '1px solid blue' : 'none' }}>
+      {item.id}
       <button onClick={() => {
         item.setPoistion({ x: 0, y: 0 });
         // item.setSize();
@@ -26,8 +44,8 @@ const ItemView = ({ item, isActive } : IItemViewProps) => {
       }}>
         changePosition
       </button>
-      ItemView
       <pre>{JSON.stringify(position, null ,2)}</pre>
+      <Component properties={properties} />
     </div>
   );
 }

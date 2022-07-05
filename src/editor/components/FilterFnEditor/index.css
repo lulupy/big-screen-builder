@@ -1,0 +1,13 @@
+.filter-editor{
+  border: 1px solid #ccc;
+}
+.filter-editor__fake-code-start, 
+.filter-editor__fake-code-end{
+  padding-left: 20px;
+  font-family: Menlo, Monaco, "Courier New", monospace;
+  font-weight: normal;
+  font-size: 12px;
+  font-feature-settings: "liga" 0, "calt" 0;
+  line-height: 18px;
+  letter-spacing: 0px;
+}

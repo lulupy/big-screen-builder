@@ -6,12 +6,28 @@
 //   - dataConfigValue // { dataSource, filters,  fieldsMap}
 //   - eventConfigValue 
 
-import { IBaseEmitter } from "../BaseEmitter";
+import { IBaseEmitter } from "../components/BaseEmitter";
 import { IComponent } from "../component";
 import { IPosition, IShape, ISize } from "../page/IPage";
 
+export interface IDataSouceConfig {
+  type: string,
+  // todo: 不同的DataSource有不同的options, 比如StaticDataSource的options为{ json }
+  // ApiDataSource的options为{ url ... }, 怎么来约束不同的options
+  options: Record<string, any>, 
+}
+
+
+export interface IDataConfigValue {
+  dataSource: IDataSouceConfig,
+  filters: string[],
+  dataMaps: Record<string, string>,
+}
+
 export type ItemEvents = {
   shapeChange: IShape,
+  propertiesChange: { [key: string]: unknown },
+  dataConfigChange: IDataConfigValue,
 };
 
 export interface IItem extends IBaseEmitter<ItemEvents> {
@@ -29,4 +45,10 @@ export interface IItem extends IBaseEmitter<ItemEvents> {
   setPropConfigValue: (propName: string, propValue: unknown) => void,
   getPropConfigValue: () => { [key:string] : unknown },
   getShape: () => IShape,
+  setDataMap: (key: string, keyMap: string) => void,
+  getDataConfigValue: () => IDataConfigValue,
+  addFilter: (code: string) => void,
+  setDataSource: (dataSource: IDataSouceConfig) => void,
+  changeFilter: (index: number, code: string) => void,
+  removeFilter: (index: number) => void,
 }

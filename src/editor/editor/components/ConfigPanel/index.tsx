@@ -13,7 +13,9 @@ const ConfigPanel = ({ page }: IConfigPanelProps) => {
       setCurrent(cur);
     });
   }, [page]);
-  return current ? <ItemConfig item={current} /> : <PageConfig />;
+  // 这里为ItemConfig加key, 当item切换时, 会重新渲染<ItemConfig />, 而不是更新
+  // 这样做的好处是不用手动处理子组件的内部state更新
+  return current ? <ItemConfig item={current} key={current.id} /> : <PageConfig />;
 }
 
 export default React.memo(ConfigPanel);

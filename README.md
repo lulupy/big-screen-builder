@@ -50,3 +50,59 @@ function Foo ({ ...,id, , eventBus }) {
   });
 }
 ```
+
+## DataSource设计
+
+```ts
+abstract class AbstractDataSource {
+  filters;
+  dataMaps;
+
+  abstract getOriginData()
+  aync getData(){
+    const originData = await this.getOriginData();
+
+    this.filters;
+    this.dataMaps;
+
+    const data = this.filters.reduce((data, filterString) => {
+      const filterFn = this.createFilterFn(filterString);
+      return filterFn(data);
+    }, originData);
+
+    return data.map(record => {
+      const newRecord = {};
+      Object.entries(this.dataMaps).forEach([key, keyMap]) {
+        newRecord[key] = record[keyMap];
+      }
+      return newRecord;
+    })
+
+  }
+  createFilterFn(filterString) {
+    return new Function('data', fnString);
+  }
+}
+
+class StaitcDataSource extends AbstractDataSource {
+  data;
+  getOriginData() {
+
+  }
+}
+```
+
+### 过滤器
+
+```js
+// 输入是一个数组
+function filter(data) {
+  // 输出也是一个数组
+  return data;
+}
+```
+
+```js
+const fn = new Function('data', `return data`);
+```
+

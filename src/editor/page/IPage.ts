@@ -1,4 +1,4 @@
-import { IBaseEmitter } from "../BaseEmitter";
+import { IBaseEmitter } from "../components/BaseEmitter";
 import { IComponent } from "../component";
 import { IItem } from "../item/IItem";
 

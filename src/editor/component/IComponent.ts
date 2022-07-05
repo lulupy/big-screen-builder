@@ -3,6 +3,7 @@ import { IPage } from "../page";
 import { IPosition, ISize } from "../page/IPage";
 
 import { FormRule } from 'antd';
+import { IDataSource } from "../DataSource/AbstractDataSource";
 
 export interface IProperty {
   type: string,
@@ -29,12 +30,17 @@ export interface IActionDeclaration {
 export interface DataFieldDeclaration {
   name: string,
 }
+
+export interface ComponentProps{
+  properties: { [key: string]: string }
+  dataSource: IDataSource,
+}
 export interface IComponent {
   name: string,
   label: string,
   icon?: string,
-  Component: FC | Component,
-  ViewComponent: FC | Component,
+  Component: React.ElementType,
+  ViewComponent: React.ElementType,
   properties: IProperty[],
   events: IEventDeclaration[],
   actions: IActionDeclaration[],
