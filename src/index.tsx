@@ -4,7 +4,6 @@ import { HashRouter  } from 'react-router-dom';
 import './index.css';
 import App from './App';
 import DragAndResize from './demos/DragAndResize';
-import EditorDemo from './demos/EditorDemo';
 
 import reportWebVitals from './reportWebVitals';
 

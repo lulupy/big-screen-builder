@@ -9,9 +9,11 @@ import "./index.css";
 
 interface EditorViewProps {
   editor: IEditor,
+  onSave: () => void,
+  onPreview: () => void,
 }
 
-const EidorView = ({ editor }: EditorViewProps) => {
+const EidorView = ({ editor, onSave, onPreview }: EditorViewProps) => {
   const components = editor.getComponents();
   const page = editor.getPage();
   if(!page) return null;
@@ -19,8 +21,8 @@ const EidorView = ({ editor }: EditorViewProps) => {
     <EditorContext.Provider value={editor}>
       <div className='eidtor'>
         <div className='editor__header'>
-          <Button>btn1</Button>
-          <Button>btn1</Button>
+          <Button onClick={onSave}>保存</Button>
+          <Button onClick={onPreview}>预览</Button>
           <Button>btn1</Button>
         </div>
         <div className='editor__content'>

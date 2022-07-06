@@ -1,6 +1,6 @@
 import React from "react";
-import { ComponentModel } from "../../../editor-core";
-import { IDataSource } from "../../../editor-core/DataSource/AbstractDataSource";
+import { ComponentModel } from "../../editor-core";
+import { IDataSource } from "../../editor-core/DataSource/AbstractDataSource";
 
 
 interface IButtonProps {

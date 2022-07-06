@@ -1,4 +1,4 @@
-import { ComponentModel } from "../../../editor-core";
+import { ComponentModel } from "../../editor-core";
 
 
 const Button = () => { 

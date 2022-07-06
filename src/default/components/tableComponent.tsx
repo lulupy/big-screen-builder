@@ -1,5 +1,5 @@
 import React from 'react';
-import { ComponentModel } from "../../../editor-core";
+import { ComponentModel } from "../../editor-core";
 
 
 

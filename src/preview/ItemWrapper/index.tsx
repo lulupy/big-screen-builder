@@ -6,7 +6,12 @@ interface IItemWrapperProps {
 }
 
 const ItemWrapper = ({ item }: IItemWrapperProps) => {
-  return <div>ItemWrapper</div>
+  const { ViewComponent } = item.component;
+  return (
+    <div>
+      <ViewComponent></ViewComponent>
+    </div>
+  );
 }
 
 export default React.memo(ItemWrapper);
