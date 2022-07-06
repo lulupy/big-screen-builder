@@ -106,3 +106,46 @@ function filter(data) {
 const fn = new Function('data', `return data`);
 ```
 
+
+
+## h5-dooring中模块联邦的使用
+
+[h5-dooring](https://github.com/MrXujiang/h5-Dooring)
+
+h5-dooring中有两个子项目: eidor和ui。
+
+其中editor会使用ui的一些模块, 所以使用模块联邦将ui的一些模块暴露出来.
+
+ui的webpack相关配置如下:
+
+```js
+new ModuleFederationPlugin({
+  name: "dooringUI",
+  library: { type: 'umd', name: 'dooringUI' },
+  filename: 'remoteEntry.js', // dooringUI的入口文件
+  exposes: { // 需要暴露的模块
+    "./viewRender": './src/renderer/ViewRender',
+    "./loader": './src/renderer/DynamicEngine',
+    "./components": './src/ui-component/index',
+  },
+  shared: { react: { eager: true , requiredVersion: '17.x' }, "react-dom": { eager: true , requiredVersion: '17.x'  } }
+})
+```
+
+eidor的webpack相关配置如下:
+
+```js
+new ModuleFederationPlugin({
+  name: "dooringEditor",
+  remotes: {
+    dooringUI: "dooringUI@//localhost:8008/remoteEntry.js" // 包含两个信息: remoteEntry.js文件位置和依赖的模块联邦名字
+  },
+  shared: { react: { singleton: true, eager: true, requiredVersion: '17.x' }, "react-dom": { singleton: true,eager: true, requiredVersion: '17.x' }, }
+})
+```
+
+然后在editor中就可以像使用其它模块一样使用模块联邦模块:
+
+```js
+import dooringCompt from 'dooringUI/components';
+```
