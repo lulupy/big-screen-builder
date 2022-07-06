@@ -37,4 +37,5 @@ export interface IPage extends IBaseEmitter<PageEvents> {
   getItems: () => IItem[],
   setCurrentItem: (item: IItem | null) => void,
   getCurrentItem: () => IItem | null,
+  serialize: () => any,
 }

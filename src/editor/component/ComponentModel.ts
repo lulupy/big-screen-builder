@@ -1,8 +1,22 @@
-import { IComponent } from './IComponent';
+import { DataFieldDeclaration, IActionDeclaration, IComponent, IEventDeclaration, IProperty } from './IComponent';
 import { IPage } from '../page';
 import { IPosition, ISize } from '../page/IPage';
+import DefaultComponent from './DefaultComponent';
+import DefaultViewComponent from './DefaultViewComponent';
+interface IComponentModelProps  {
+  name: string,
+  label: string,
+  icon?: string,
+  Component?: React.ElementType,
+  ViewComponent?: React.ElementType,
+  properties?: IProperty[],
+  events?: IEventDeclaration[],
+  actions?: IActionDeclaration[],
+  dataFields?: DataFieldDeclaration[],
+};
 
-type IComponentModelProps = Omit<IComponent, 'setPage' | 'addToPage' | 'getPage'>;
+
+
 
 class ComponentModel implements IComponent {
   public name;
@@ -20,12 +34,12 @@ class ComponentModel implements IComponent {
     this.name = options.name;
     this.label = options.label;
     this.icon = options.icon;
-    this.Component = options.Component;
-    this.ViewComponent = options.ViewComponent;
-    this.properties = options.properties;
-    this.events = options.events;
-    this.actions = options.actions;
-    this.dataFields = options.dataFields;
+    this.Component = options.Component || DefaultComponent;
+    this.ViewComponent = options.ViewComponent || DefaultViewComponent;
+    this.properties = options.properties || [];
+    this.events = options.events || [];
+    this.actions = options.actions || [];
+    this.dataFields = options.dataFields || [];
     this.page = null;
   }
   setPage(page: IPage | null) {

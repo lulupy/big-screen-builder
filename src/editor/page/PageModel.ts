@@ -4,6 +4,7 @@ import { IItem } from '../item/IItem';
 import ItemModel from '../item/ItemModel';
 import BaseEmitter from '../components/BaseEmitter';
 import { IPage, IPosition, ISize, ScaleMode, PageEvents } from './IPage';
+import { DeserializeEvent } from '../interface';
 
 interface IPageModelOptions {
   size: ISize,
@@ -41,6 +42,21 @@ class PageModel extends BaseEmitter<PageEvents> implements IPage {
   }
   getCurrentItem() {
     return this.currentItem;
+  }
+  serialize() {
+    return {
+      size: this.size,
+      scaleMode: this.scaleMode,
+      items: this.items.map(item => item.serialize()),
+    };
+  }
+  static deserialize({data, editor}:  DeserializeEvent<PageModel>) {
+    const page = new PageModel({
+      size: data.size,
+      scaleMode: data.scaleMode,
+    });
+    page.items = data.items.map(item => ItemModel.deserialize({ data: item, editor }));
+    return page;
   }
 }
 export default PageModel;

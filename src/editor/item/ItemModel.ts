@@ -2,6 +2,7 @@ import BaseEmitter from "../components/BaseEmitter";
 import { IComponent } from "../component";
 import { IPosition, ISize } from "../page/IPage";
 import { IDataConfigValue, IDataSouceConfig, IItem, ItemEvents } from "./IItem";
+import { DeserializeEvent } from "../interface";
 
 
 interface IItemModelOptions {
@@ -110,6 +111,30 @@ class ItemModel extends BaseEmitter<ItemEvents> implements IItem {
 
   emitDataConfigChange() {
     this.emit('dataConfigChange', this.getDataConfigValue());
+  }
+
+  serialize() {
+    return {
+      id: this.id,
+      size: this.size,
+      position: this.position,
+      propConfigValue: this.propConfigValue,
+      dataConfigValue: this.dataConfigValue,
+      component: this.component.name,
+    };
+  }
+
+  static deserialize({data, editor} : DeserializeEvent<ItemModel>) {
+    const cmpt = editor.getComponent(data.component);
+    const item =  new ItemModel({
+      size: data.size,
+      position: data.position,
+      component: cmpt,
+    });
+    item.propConfigValue = data.propConfigValue;
+    item.dataConfigValue = data.dataConfigValue;
+
+    return item;
   }
 
 

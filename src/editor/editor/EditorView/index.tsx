@@ -14,6 +14,7 @@ interface EditorViewProps {
 const EidorView = ({ editor }: EditorViewProps) => {
   const components = editor.getComponents();
   const page = editor.getPage();
+  if(!page) return null;
   return (
     <EditorContext.Provider value={editor}>
       <div className='eidtor'>
