@@ -4,6 +4,7 @@ import BaseConfig from '../BaseConfig';
 import { IItem } from '../../../../item';
 import DataConfig from '../DataConfig';
 import './index.css';
+import EventConfig from '../EventConfig';
 
 const { TabPane } = Tabs;
 
@@ -23,7 +24,7 @@ const ItemConfig = ({ item }: IItemConfigProps) => {
           <DataConfig item={item} />
         </TabPane>
         <TabPane tab="交互" key="3">
-          交互
+          <EventConfig item={item} />
         </TabPane>
       </Tabs>
     </div>

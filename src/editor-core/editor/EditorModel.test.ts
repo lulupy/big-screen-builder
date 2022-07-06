@@ -50,6 +50,7 @@ describe('EditorModel', () => {
               }
             }
           },
+          "eventConfigValue": {},
           "component": "button"
         },
         {
@@ -63,6 +64,7 @@ describe('EditorModel', () => {
             "y": 20
           },
           "propConfigValue": {},
+          "eventConfigValue": {},
           "dataConfigValue": {
             "filters": [],
             "dataMaps": {},
@@ -86,6 +88,7 @@ describe('EditorModel', () => {
             "y": 30
           },
           "propConfigValue": {},
+          "eventConfigValue": {},
           "dataConfigValue": {
             "filters": [],
             "dataMaps": {},
@@ -191,5 +194,6 @@ describe('EditorModel', () => {
     };
     const page = editor.deserializePage(data);
     expect(page.items.length).toBe(3);
+    expect(page.items[0].id).toBe('-1657016141581');
   });
 });

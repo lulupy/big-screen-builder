@@ -1,12 +1,20 @@
 import { ComponentModel } from "../../editor-core";
+import { IViewComponentProps } from "../../editor-core/interface";
 
 
-const Button = () => { 
+const Button = ({}) => { 
   return <div>Button</div>;
 }
 
-const ViewButton = () => {
-  return <div>Button</div>;
+const ViewButton = ({ eventBus }: IViewComponentProps) => {
+  return (
+    <div onClick={() => {
+      console.log('click');
+      eventBus.emit('click');
+    }}>
+      Button
+    </div>
+  );
 }
 
 const rules = [
@@ -26,7 +34,10 @@ const buttonComponent = new ComponentModel({
     { name: 'text' },
   ],
   actions: [],
-  events: [],
+  events: [
+    { name: 'click', label: '点击', description: '点击按钮' },
+    { name: 'clic1', label: '点击2', description: '测试' },
+  ],
   Component: Button,
   ViewComponent: ViewButton,
 });

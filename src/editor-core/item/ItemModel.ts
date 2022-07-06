@@ -1,7 +1,7 @@
 import BaseEmitter from "../components/BaseEmitter";
 import { IComponent } from "../component";
 import { IPosition, ISize } from "../page/IPage";
-import { IDataConfigValue, IDataSouceConfig, IItem, ItemEvents } from "./IItem";
+import { IDataConfigValue, IDataSouceConfig, IEventConfigValue, IEventItem, IItem, ItemEvents } from "./IItem";
 import { DeserializeEvent } from "../interface";
 
 
@@ -18,13 +18,15 @@ class ItemModel extends BaseEmitter<ItemEvents> implements IItem {
   component;
   protected propConfigValue: { [key: string]: unknown };
   protected dataConfigValue: IDataConfigValue;
+  protected eventConfigValue: IEventConfigValue;
   constructor(options: IItemModelOptions) {
     super();
-    this.id =  `${-new Date()}`;
+    this.id =  `${+new Date()}`;
     this.size = options.size;
     this.position = options.position;
     this.component = options.component;
     this.propConfigValue = {};
+    this.eventConfigValue = {};
     this.dataConfigValue = {
       filters: [],
       dataMaps: {},
@@ -81,6 +83,12 @@ class ItemModel extends BaseEmitter<ItemEvents> implements IItem {
     return this.propConfigValue;
   }
 
+  getEventConfigValue() {
+    return this.eventConfigValue;
+  }
+  setEventConfigValue(eventName: string, evnetItem: IEventItem) {
+    this.eventConfigValue[eventName] = evnetItem;
+  }
   getDataMaps() {
     return this.dataConfigValue.dataMaps;
   }
@@ -120,6 +128,7 @@ class ItemModel extends BaseEmitter<ItemEvents> implements IItem {
       position: this.position,
       propConfigValue: this.propConfigValue,
       dataConfigValue: this.dataConfigValue,
+      eventConfigValue: this.eventConfigValue,
       component: this.component.name,
     };
   }
@@ -131,8 +140,10 @@ class ItemModel extends BaseEmitter<ItemEvents> implements IItem {
       position: data.position,
       component: cmpt,
     });
+    item.id = data.id;
     item.propConfigValue = data.propConfigValue;
     item.dataConfigValue = data.dataConfigValue;
+    item.eventConfigValue = data.eventConfigValue;
 
     return item;
   }

@@ -1,12 +1,16 @@
-import React from 'react';
 import { useNavigate } from 'react-router';
 import editor from '../../default/editor';
 import {  EditorView, PageModel } from '../../editor-core';
 
-const page = new PageModel();
-editor.setPage(page);
-
 const Editor = () => {
+  const data = localStorage.getItem('data');
+  if(data) {
+    editor.deserializePage(JSON.parse(data))
+  } else {
+    const page = new PageModel();
+    editor.setPage(page);
+  }
+
   let navigate = useNavigate();
 
   const handleSave = () => {
@@ -15,6 +19,8 @@ const Editor = () => {
   const handlePreview = () => {
     navigate('/preview');
   };
+
+
   return <EditorView editor={editor} onSave={handleSave} onPreview={handlePreview}/>
 }
 

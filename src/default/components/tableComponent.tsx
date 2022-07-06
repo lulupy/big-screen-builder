@@ -1,22 +1,26 @@
 import React from 'react';
 import { ComponentModel } from "../../editor-core";
+import { IViewComponentProps } from '../../editor-core/interface';
 
 
 
 
-const Table = ({ dataConfigVlaue } : any) => {
-  const {
-    dataSoure,
-    
-  } = dataConfigVlaue;
-  React.useEffect(() => {
-
-  });
+const Table = ({ dataSource }: any) => {
   return <div>Table</div>;
 }
 
-const ViewTable = () => {
-  return <div>Table</div>;
+const ViewTable = ({ eventBus }: IViewComponentProps) => {
+  const [count, setCount] = React.useState(0);
+  React.useEffect(() => {
+    const lisener = () => {
+      setCount(count =>  1 + count);
+    }
+    eventBus.on('refresh', lisener);
+    return () => {
+      eventBus.off('refresh', lisener);
+    };
+  }, []);
+  return <div>Table: {count}</div>;
 }
 
 const rules = [
@@ -35,7 +39,9 @@ const tableComponent = new ComponentModel({
     { name: 'id' },
     { name: 'text' },
   ],
-  actions: [],
+  actions: [
+    { name: 'refresh', label: '刷新' },
+  ],
   events: [],
   Component: Table,
   ViewComponent: ViewTable,

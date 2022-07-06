@@ -24,11 +24,20 @@ export interface IDataConfigValue {
   dataMaps: Record<string, string>,
 }
 
+export interface IEventConfigValue {
+  [key: string]: IEventItem | undefined,
+}
+
 export type ItemEvents = {
   shapeChange: IShape,
   propertiesChange: { [key: string]: unknown },
   dataConfigChange: IDataConfigValue,
 };
+
+export interface IEventItem {
+  target: string,
+  action: string,
+}
 
 export interface IItem extends IBaseEmitter<ItemEvents> {
   id: string,
@@ -44,6 +53,8 @@ export interface IItem extends IBaseEmitter<ItemEvents> {
   setSize: (size: ISize) => void;
   setPropConfigValue: (propName: string, propValue: unknown) => void,
   getPropConfigValue: () => { [key:string] : unknown },
+  setEventConfigValue: (eventName: string, evnetItem: IEventItem) => void,
+  getEventConfigValue: () => IEventConfigValue,
   getShape: () => IShape,
   setDataMap: (key: string, keyMap: string) => void,
   getDataConfigValue: () => IDataConfigValue,
