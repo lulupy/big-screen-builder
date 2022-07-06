@@ -1,5 +1,5 @@
 import { Input, InputNumber } from 'antd';
-import { EditorModel } from '../../editor';
+import { EditorModel } from '../../editor-core';
 import buttonComponent from './components/buttonComponent';
 import imageComponent from './components/imageComponent';
 import testComponent from './components/testComponent';

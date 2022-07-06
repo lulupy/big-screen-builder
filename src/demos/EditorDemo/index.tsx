@@ -1,5 +1,5 @@
 import React from 'react';
-import {  EditorView, PageModel } from '../../editor';
+import {  EditorView, PageModel } from '../../editor-core';
 import editor from './editor';
 
 const page = new PageModel();

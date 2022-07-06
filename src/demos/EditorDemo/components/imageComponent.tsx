@@ -1,4 +1,4 @@
-import { ComponentModel } from "../../../editor";
+import { ComponentModel } from "../../../editor-core";
 
 const Image = () => { 
   return <div>Image</div>;

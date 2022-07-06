@@ -1,5 +1,5 @@
 import React from 'react';
-import {IPage} from '../editor';
+import {IPage} from '../editor-core';
 import ItemWrapper from './ItemWrapper';
 interface IPreviewProps {
   page: IPage,

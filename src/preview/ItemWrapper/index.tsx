@@ -1,5 +1,5 @@
 import React from 'react';
-import { IItem } from '../../editor/item';
+import { IItem } from '../../editor-core/item';
 
 interface IItemWrapperProps {
   item: IItem
