@@ -51,6 +51,7 @@ export interface IItem extends IBaseEmitter<ItemEvents> {
   setHeight: (height: number) => void,
   setPoistion: (position: IPosition) => void;
   setSize: (size: ISize) => void;
+  setShape: (shape: IShape) => void,
   setPropConfigValue: (propName: string, propValue: unknown) => void,
   getPropConfigValue: () => { [key:string] : unknown },
   setEventConfigValue: (eventName: string, evnetItem: IEventItem) => void,

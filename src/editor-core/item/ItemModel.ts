@@ -1,6 +1,6 @@
 import BaseEmitter from "../components/BaseEmitter";
 import { IComponent } from "../component";
-import { IPosition, ISize } from "../page/IPage";
+import { IPosition, IShape, ISize } from "../page/IPage";
 import { IDataConfigValue, IDataSouceConfig, IEventConfigValue, IEventItem, IItem, ItemEvents } from "./IItem";
 import { DeserializeEvent } from "../interface";
 
@@ -64,7 +64,12 @@ class ItemModel extends BaseEmitter<ItemEvents> implements IItem {
   setSize(size: ISize) {
     this.size = size;
     this.emitShapeChange();
-  };
+  }
+  setShape(shape: IShape) {
+    this.size = shape.size;
+    this.position = shape.position;
+    this.emitShapeChange();
+  }
   getShape() {
     return {
       size: this.size,
