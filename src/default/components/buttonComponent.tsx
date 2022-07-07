@@ -29,6 +29,7 @@ const buttonComponent = new ComponentModel({
     { name: 'fontSize', label: 'gift字体大小',  type: 'input', rules },
     { name: 'paddingTop', label: 'gift上边距',  type: 'number', rules },
   ],
+  defaultSize: { width: 100, height: 50 },
   dataFields: [
     { name: 'id' },
     { name: 'text' },

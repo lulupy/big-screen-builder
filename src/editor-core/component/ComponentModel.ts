@@ -7,6 +7,7 @@ interface IComponentModelProps  {
   name: string,
   label: string,
   icon?: string,
+  defaultSize?: ISize,
   Component?: React.ElementType,
   ViewComponent?: React.ElementType,
   properties?: IProperty[],
@@ -22,6 +23,7 @@ class ComponentModel implements IComponent {
   public name;
   public label;
   public icon;
+  public defaultSize;
   public Component;
   public ViewComponent;
   public properties;
@@ -30,10 +32,12 @@ class ComponentModel implements IComponent {
   public dataFields;
   protected page: IPage | null;
 
+
   constructor(options: IComponentModelProps) {
     this.name = options.name;
     this.label = options.label;
     this.icon = options.icon;
+    this.defaultSize = options.defaultSize || { width: 100, height: 100 };
     this.Component = options.Component || DefaultComponent;
     this.ViewComponent = options.ViewComponent || DefaultViewComponent;
     this.properties = options.properties || [];

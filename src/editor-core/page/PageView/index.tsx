@@ -16,12 +16,13 @@ const PageView = ({ page }:IPageViewProps) => {
     accept: COMPONENT_TYPE,
     // drop回调函数
     drop: (item: { component: IComponent }, monitor) => {
+      const { defaultSize } = item.component;
       // monitor.getClientOffset: 返回鼠标的位置, 相对于视口
       const offset = monitor.getClientOffset();
       if(!ref.current) return;
       const rect = ref.current.getBoundingClientRect();
       item.component.addToPage(
-        { width: 200, height: 200 },
+        defaultSize,
         { x: (offset?.x || 0) - rect.x, y: (offset?.y || 0) - rect.y },
       );
     },

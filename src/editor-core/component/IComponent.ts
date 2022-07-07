@@ -39,6 +39,7 @@ export interface IComponent {
   name: string,
   label: string,
   icon?: string,
+  defaultSize: ISize,
   Component: React.ElementType,
   ViewComponent: React.ElementType,
   properties: IProperty[],
