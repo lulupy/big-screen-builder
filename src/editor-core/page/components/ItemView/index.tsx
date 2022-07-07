@@ -1,4 +1,4 @@
-import React, { SyntheticEvent } from 'react';
+import React, { CSSProperties, SyntheticEvent } from 'react';
 import { IDataSource } from '../../../DataSource/AbstractDataSource';
 import StaticDataSource from '../../../DataSource/StaticDataSource';
 import { IItem } from '../../../item';
@@ -51,8 +51,19 @@ const ItemView = ({ item, isActive } : IItemViewProps) => {
     event.preventDefault();
     item.select();
   }, [item]);
+  const style: CSSProperties = {
+    ...size,
+    transform: `translate(${position.x}px, ${position.y}px)`,
+    border: isActive ? '1px solid blue' : 'none',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+  };
   return (
-    <div onClick={handleSelectItem} style={{ border: isActive ? '1px solid blue' : 'none' }}>
+    <div
+      onClick={handleSelectItem}
+      style={style}
+    >
       {item.id}
       <button onClick={() => {
         item.setPoistion({ x: 0, y: 0 });

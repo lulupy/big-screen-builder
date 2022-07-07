@@ -1,10 +1,40 @@
-import React from 'react';
+import React, { CSSProperties } from 'react';
+import { useDrag } from 'react-dnd';
+import { COMPONENT_TYPE } from '../constants';
+import { IComponent } from './IComponent';
 
-const ComponentView = () => {
+interface IComponentViewProps {
+  component: IComponent,
+}
+const ComponentView = ({ component }: IComponentViewProps) => {
+  const [{ isDragging }, drag] = useDrag(() => ({
+    type: COMPONENT_TYPE,
+    item: {
+      component,
+    },
+    collect: (monitor) => {
+      return {
+        isDragging: !!monitor.isDragging(),
+      };
+    },
+  }));
+
+  const style: CSSProperties = React.useMemo(
+    () => ({
+      opacity: isDragging ? 0.4 : 1,
+      cursor: 'move',
+    }),
+    [isDragging],
+  );
+
+
   return (
-    <div>
-      ComponentView
-    </div>
+    <>
+      <div ref={drag} style={{ ...style, border: '1px solid #111' }}>
+        <img src="" alt="" />
+        <span>{component.label}</span>
+      </div>
+    </>
   );
 };
 

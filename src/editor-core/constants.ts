@@ -1,0 +1,1 @@
+export const COMPONENT_TYPE = 'COMPONENT_TYPE';
