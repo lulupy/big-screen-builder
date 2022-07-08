@@ -1,23 +1,42 @@
 import React from 'react';
-import { Rnd } from 'react-rnd';
+import { Rnd } from './react-rnd';
+import { RedoOutlined } from '@ant-design/icons';
+
+const Child = ({ style, ...other }: any) => {
+  return (
+    <div
+      {...other}
+      style={{
+        ...style,
+        transform: `${style.transform || ''}  rotate(70deg)`,
+      }}
+    />
+  )
+}
+
+
+const TransformOverride = ({ transform, children }: any) => {
+  return React.cloneElement(children, {
+    style: {
+      ...children.style,
+      transform: `${children.style.transform || 0} ${transform}`,
+    }
+  });
+}
 
 function DragAndResize() {
-  const [[x, y], setPosition] = React.useState([0, 0]);
-  const [[width, height], setSize] = React.useState([100, 100]);
+
   return (
-    <Rnd
-      size={{ width, height }}
-      position={{ x, y }}
-      onDragStop={(e, d) => setPosition([d.x, d.y])}
-      onResizeStop={(e, direction, ref, delta, position) => 
-        setSize([
-          width + delta.width,
-          height + delta.height,
-        ])
-      }
-    >
-      <div>aaa</div>
+    <Rnd style={{ border: '1px solid #111' }}>
+      <div style={{ background: 'green' }}>
+        aaa
+        asdfa
+        asdfaasdfa
+        sdf
+        ads
+      </div>
     </Rnd>
+    
   );
 }
 

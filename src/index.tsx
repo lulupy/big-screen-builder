@@ -4,6 +4,9 @@ import { HashRouter  } from 'react-router-dom';
 import './index.css';
 import App from './App';
 import DragAndResize from './demos/DragAndResize';
+import DraggableDemo from './demos/DraggableDemo';
+import RotateDemo from './demos/RotateDemo';
+import ResizeDemo from './demos/ResizeDemo';
 
 import reportWebVitals from './reportWebVitals';
 
@@ -15,7 +18,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <HashRouter>
-      <App />
+      <ResizeDemo />
     </HashRouter>
   </React.StrictMode>
 );
