@@ -7,6 +7,7 @@ import DragAndResize from './demos/DragAndResize';
 import DraggableDemo from './demos/DraggableDemo';
 import RotateDemo from './demos/RotateDemo';
 import ResizeDemo from './demos/ResizeDemo';
+import DragAndReizeAndRotateDemo from './demos/DragAndReizeAndRotateDemo';
 
 import reportWebVitals from './reportWebVitals';
 

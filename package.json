@@ -11,6 +11,7 @@
     "@types/react": "^18.0.14",
     "@types/react-dom": "^18.0.5",
     "antd": "^4.21.4",
+    "gl-matrix": "^3.4.3",
     "mitt": "^3.0.0",
     "monaco-editor": "0.33.0",
     "react": "^18.2.0",
@@ -50,6 +51,7 @@
     ]
   },
   "devDependencies": {
+    "@types/gl-matrix": "^3.2.0",
     "@types/react-collapse": "^5.0.1",
     "customize-cra": "^1.0.0",
     "monaco-editor-webpack-plugin": "^7.0.1",

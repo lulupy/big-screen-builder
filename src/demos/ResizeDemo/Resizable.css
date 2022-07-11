@@ -1,0 +1,58 @@
+.resize-wrapper {
+  position: relative;
+  user-select: auto;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+.resize-wrapper .control{
+  border: 1px solid #59c7f9;
+  background: #fff;
+  user-select: none;
+  cursor: row-resize;
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.resize-wrapper .control.top{
+  top: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.resize-wrapper .control.right{
+  right: -5px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.resize-wrapper .control.bottom{
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.resize-wrapper .control.left{
+  left: -5px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.resize-wrapper .control.topRight{
+  right: 0;
+  top: 0;
+  transform: translate(50%, -50%);
+}
+.resize-wrapper .control.bottomRight{
+  right: 0;
+  bottom: 0;
+  transform: translate(50%, 50%);
+}
+.resize-wrapper .control.bottomLeft{
+  left: 0;
+  bottom: 0;
+  transform: translate(-50%, 50%);
+}
+.resize-wrapper .control.topLeft{
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
+}

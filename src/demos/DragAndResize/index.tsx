@@ -1,6 +1,8 @@
 import React from 'react';
 import { Rnd } from './react-rnd';
-import { RedoOutlined } from '@ant-design/icons';
+import {  default as DraggableRoot } from "react-draggable";
+import { Enable, Resizable, ResizeDirection } from "re-resizable";
+const Draggable: any = DraggableRoot;
 
 const Child = ({ style, ...other }: any) => {
   return (
@@ -13,6 +15,8 @@ const Child = ({ style, ...other }: any) => {
     />
   )
 }
+
+
 
 
 const TransformOverride = ({ transform, children }: any) => {
@@ -40,4 +44,29 @@ function DragAndResize() {
   );
 }
 
-export default DragAndResize;
+const  DraggableDemo = () => {
+  return (
+    <Draggable position={{ x: 0, y: 0 }}>
+        <div>
+          <div className="handle">Drag from here</div>
+          <div>This readme is really dragging on...</div>
+        </div>
+    </Draggable>
+  );
+}
+
+
+const ResizableDemo = () => {
+  return (
+    <Resizable
+      style={{ border: '1px solid #111' }}
+      // size={{width: 100, height: 100}}
+    > 
+        <div>
+          <div className="handle">Drag from here</div>
+          <div>This readme is really dragging on...</div>
+        </div>
+    </Resizable>
+  );
+}
+export default ResizableDemo;
