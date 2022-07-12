@@ -7,7 +7,7 @@ import DragAndResize from './demos/DragAndResize';
 import DraggableDemo from './demos/DraggableDemo';
 import RotateDemo from './demos/RotateDemo';
 import ResizeDemo from './demos/ResizeDemo';
-import Demo from './demos/DragAndReizeAndRotateDemo/react-rrd/Demo';
+import Demo from './react-rrd/Demo';
 
 import reportWebVitals from './reportWebVitals';
 

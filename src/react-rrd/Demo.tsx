@@ -1,5 +1,5 @@
 import React from 'react';
-import Rrd from './';
+import Rrd from '.';
 
 const DemoWithNoProps = () => {
   return (
