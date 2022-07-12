@@ -1,5 +1,5 @@
 import React from 'react';
-import Rrd from './react-rrd';
+import Rrd from './';
 
 const DemoWithNoProps = () => {
   return (
@@ -12,7 +12,7 @@ const DemoWithNoProps = () => {
 const DemoWtihProps = () => {
   return (
     <Rrd
-      position={{x: 0, y: 0}}
+      position={{x: 100, y: 100}}
       rotate={60}
       size={{width: 100, height: 100}}
     >
@@ -22,7 +22,7 @@ const DemoWtihProps = () => {
 }
 
 const DemoWithPropsChange = () => {
-  const [position, setPosition] = React.useState({x: 0, y: 0});
+  const [position, setPosition] = React.useState({x: 100, y: 100});
   const [rotate, setRotate] = React.useState(60);
   const [size, setSize] = React.useState({width: 100, height: 100});
   return (
@@ -30,15 +30,16 @@ const DemoWithPropsChange = () => {
       position={position}
       rotate={rotate}
       size={size}
-      onDragStop={() => {
-        setPosition({x: 100, y: 100});
+      onDragStop={(e, data) => {
+        setPosition({x: data.x, y: data.y});
       }}
-      onResizeStop={() => {
+      onResizeStop={(event, dir, size, position) => {
         // 改变 size 和 position
-        setSize({width: 200, height: 200});
+        setSize(size);
+        setPosition(position);
       }}
-      onRotateStop={() => {
-        setRotate(90);
+      onRotateStop={(rotate) => {
+        setRotate(rotate);
       }}
     >
       <div>aaa</div>
@@ -47,8 +48,8 @@ const DemoWithPropsChange = () => {
 }
 const DragAndReizeAndRotateDemo = () => {
   return <div>
-    <DemoWithNoProps></DemoWithNoProps>
-    <DemoWtihProps></DemoWtihProps>
+    {/* <DemoWithNoProps></DemoWithNoProps> */}
+    {/* <DemoWtihProps></DemoWtihProps> */}
     <DemoWithPropsChange></DemoWithPropsChange>
   </div>
 }

@@ -295,7 +295,7 @@ const Resizable = (props: ResizableProps) => {
     >
       {props.children}
       <div onMouseDown={handleMouseDown.bind(null, 'top')} className='control top'></div>
-      <div onMouseDown={handleRightMouseDown} className='control right'></div>
+      <div onMouseDown={handleMouseDown.bind(null, 'right')} className='control right'></div>
       <div onMouseDown={handleMouseDown.bind(null, 'bottom')} className='control bottom'></div>
       <div onMouseDown={handleMouseDown.bind(null, 'left')} className='control left'></div>
       <div onMouseDown={handleMouseDown.bind(null, 'topRight')} className='control topRight'></div>

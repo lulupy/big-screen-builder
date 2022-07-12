@@ -61,6 +61,7 @@ const Resizable = (props: ResizableProps) => {
 
     onResizeStart && onResizeStart(event, direction);
     const mouseMove = (event: MouseEvent) => {
+
       setIsResizing(true);
       const delta = {
         width: 0,
