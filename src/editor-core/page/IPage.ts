@@ -1,6 +1,7 @@
 import { IBaseEmitter } from "../components/BaseEmitter";
 import { IComponent } from "../component";
 import { IItem } from "../item/IItem";
+import { DraggableData } from "react-draggable";
 
 export interface ISize {
   width: number,
@@ -27,6 +28,7 @@ export enum ScaleMode {
 export type PageEvents = {
   itemsChange: IItem[];
   currentItemChange: IItem | null,
+  itemMove: { item: IItem, data: DraggableData }
 };
 
 

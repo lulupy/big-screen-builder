@@ -39,6 +39,8 @@ interface Props {
   style?: React.CSSProperties;
   className?: string;
   children: React.ReactNode;
+  enableResizing?: boolean,
+  enableRotate?: boolean,
   onDragStart?: RrdDragallback;
   onDrag?: RrdDragallback;
   onDragStop?: RrdDragallback;
@@ -97,10 +99,12 @@ const Rrd = (props: Props) => {
       }}
     >
       <Resizable
+        style={props.style}
         position={position}
         size={size}
         ref={box}
         rotate={rotate}
+        enable={props.enableResizing}
         onResizeStart={(event, dir) => {
           props.onResizeStart && props.onResizeStart(event, dir);
           flushSync(() => {
@@ -124,6 +128,7 @@ const Rrd = (props: Props) => {
         }}
       >
         <RotateControl
+          enable={props.enableRotate}
           rotate={rotate}
           box={box}
           onRotateStart={(startRotate) => {

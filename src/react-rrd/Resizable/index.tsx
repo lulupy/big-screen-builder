@@ -10,6 +10,7 @@ export type ResizeStartCallback = (event: React.MouseEvent, dir: Direction) => v
 export type ResizeCallback = (event: MouseEvent, direction: Direction, size: Size, position: Position) => void;
 
 interface ResizableProps {
+  enable?: boolean,
   style?: React.CSSProperties;
   className?: string;
   size: Size;
@@ -26,7 +27,7 @@ function hasDirection(dir: 'top' | 'right' | 'bottom' | 'left', target: Directio
 
 
 const Resizable = React.forwardRef<HTMLDivElement, ResizableProps>((props: ResizableProps, ref) => {
-  const { onResizeStart, onResize, onResizeStop, size, position, rotate, style, ...other } = props;
+  const { onResizeStart, onResize, onResizeStop, size, position, rotate, style, enable = true, ...other } = props;
   // 记录最后一次mousemove后位置信息
   const lastSizeAndPosition = React.useRef<{size: Size, position: Position} | null>(null);
   const handleMouseDown = React.useCallback((direction: Direction, event: React.MouseEvent) => {
@@ -73,6 +74,8 @@ const Resizable = React.forwardRef<HTMLDivElement, ResizableProps>((props: Resiz
       // 这里只考虑了PC端的情况, 如果需要考虑移动端的话, 那么对应的事件为React.TouchEvent
       // 并且需要对取clientX做兼容, 对于TouchEvent： event: touches[0].clientX
       // 可以参考代码: https://github.com/bokuweb/re-resizable/blob/master/src/index.tsx#L677-L689
+
+      // 这里鼠标位置是相对于视口的, 如果box是希望参照某个容器来定位, 需要计算偏移量
       const mousePosition = {
         x: event.clientX,
         y: event.clientY,
@@ -146,14 +149,19 @@ const Resizable = React.forwardRef<HTMLDivElement, ResizableProps>((props: Resiz
       }}
     >
       {props.children}
-      <div onMouseDown={handleMouseDown.bind(null, 'top')} className='control top'></div>
-      <div onMouseDown={handleMouseDown.bind(null, 'right')} className='control right'></div>
-      <div onMouseDown={handleMouseDown.bind(null, 'bottom')} className='control bottom'></div>
-      <div onMouseDown={handleMouseDown.bind(null, 'left')} className='control left'></div>
-      <div onMouseDown={handleMouseDown.bind(null, 'topRight')} className='control topRight'></div>
-      <div onMouseDown={handleMouseDown.bind(null, 'bottomRight')} className='control bottomRight'></div>
-      <div onMouseDown={handleMouseDown.bind(null, 'bottomLeft')} className='control bottomLeft'></div>
-      <div onMouseDown={handleMouseDown.bind(null, 'topLeft')} className='control topLeft'></div>
+      {enable && (
+        <>
+          <div onMouseDown={handleMouseDown.bind(null, 'top')} className='control top'></div>
+          <div onMouseDown={handleMouseDown.bind(null, 'right')} className='control right'></div>
+          <div onMouseDown={handleMouseDown.bind(null, 'bottom')} className='control bottom'></div>
+          <div onMouseDown={handleMouseDown.bind(null, 'left')} className='control left'></div>
+          <div onMouseDown={handleMouseDown.bind(null, 'topRight')} className='control topRight'></div>
+          <div onMouseDown={handleMouseDown.bind(null, 'bottomRight')} className='control bottomRight'></div>
+          <div onMouseDown={handleMouseDown.bind(null, 'bottomLeft')} className='control bottomLeft'></div>
+          <div onMouseDown={handleMouseDown.bind(null, 'topLeft')} className='control topLeft'></div>
+        </>
+      )}
+        
     </div>
   );
 })

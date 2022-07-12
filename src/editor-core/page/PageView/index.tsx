@@ -3,6 +3,7 @@ import { useDrop } from 'react-dnd';
 import { IComponent } from '../../component';
 import { COMPONENT_TYPE } from '../../constants';
 import ItemView from '../components/ItemView';
+import MarkLine from '../components/MarkLine';
 import { IPage } from '../IPage';
 import './index.css';
 
@@ -68,8 +69,9 @@ const PageView = ({ page }:IPageViewProps) => {
       onClick={handlePageClick}
     >
       {items.map(item => (
-        <ItemView item={item} key={item.id} isActive={item === current}/>
+        <ItemView page={page} item={item} key={item.id} isActive={item === current}/>
       ))}
+      <MarkLine page={page} />
     </div>
   );
 };

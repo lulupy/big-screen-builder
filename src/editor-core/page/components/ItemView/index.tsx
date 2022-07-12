@@ -4,14 +4,15 @@ import { IDataSource } from '../../../DataSource/AbstractDataSource';
 import StaticDataSource from '../../../DataSource/StaticDataSource';
 import { IItem } from '../../../item';
 import { IDataConfigValue } from '../../../item/IItem';
-import { IShape } from '../../IPage';
+import { IPage, IShape } from '../../IPage';
 import ResizeHandle from './ResizeHandle';
 
 interface IItemViewProps {
   item: IItem,
+  page: IPage,
   isActive: boolean,
 }
-const ItemView = ({ item, isActive } : IItemViewProps) => {
+const ItemView = ({ item, page, isActive } : IItemViewProps) => {
   const [{size, position}, setShape] = React.useState(item.getShape());
   const [dataSource, setDataSoure] = React.useState<IDataSource | null>(null);
   const [properties, setProperties] = React.useState(item.getPropConfigValue());
@@ -65,7 +66,13 @@ const ItemView = ({ item, isActive } : IItemViewProps) => {
       onDragStop={(e, d) => {
         e.preventDefault();
         e.stopPropagation();
-        item.setPoistion(d);
+        item.setPoistion({
+          x: d.x,
+          y: d.y,
+        });
+      }}
+      onDrag={(e, data) => {
+        page.emit('itemMove', { item, data });
       }}
       onResizeStop={(e, direction, ref, delta, position) => {
         e.preventDefault();
@@ -77,7 +84,7 @@ const ItemView = ({ item, isActive } : IItemViewProps) => {
             height: size.height + delta.height,
           },
           position,
-        })
+        });
       }}
       resizeHandleComponent={{
         top: <ResizeHandle />,

@@ -27,6 +27,9 @@ const DemoWithPropsChange = () => {
   const [size, setSize] = React.useState({width: 100, height: 100});
   return (
     <Rrd
+      // style={{ border: '1px solid #111' }}
+      // enableResizing={false}
+      // enableRotate={false}
       position={position}
       rotate={rotate}
       size={size}

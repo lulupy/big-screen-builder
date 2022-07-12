@@ -19,13 +19,14 @@ function calculateRotateDelta(start: Position, center: Position, current: Positi
 }
 
 interface RotateControlProps {
+  enable?: boolean,
   box: React.RefObject<HTMLDivElement>,
   rotate: number,
   onRotateStart?: RotateStartCallack,
   onRotate?: RotateCallack,
   onRotateStop?: RotateCallack,
 }
-const RotateControl = ({ box, rotate, onRotateStart, onRotate, onRotateStop }: RotateControlProps) => {
+const RotateControl = ({ box, rotate, enable = true, onRotateStart, onRotate, onRotateStop }: RotateControlProps) => {
   const lastRotate = React.useRef<number | null>(null);
   const handleRotateMouseDown = (event: React.MouseEvent) => {
     event.stopPropagation()
@@ -70,9 +71,10 @@ const RotateControl = ({ box, rotate, onRotateStart, onRotate, onRotateStop }: R
     window.addEventListener('mousemove', handleMouseMove);
     window.addEventListener('mouseup', handleMouseUp);
   };
-  return (
+  
+  return enable ? (
     <div className='rotate-control' onMouseDown={handleRotateMouseDown}></div>
-  );
+  ) : null;
 }
 
 export default RotateControl;

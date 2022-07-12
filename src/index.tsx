@@ -19,7 +19,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <HashRouter>
-      <Demo />
+      <App />
     </HashRouter>
   </React.StrictMode>
 );
