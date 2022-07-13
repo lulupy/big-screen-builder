@@ -49,6 +49,8 @@ const RotateControl = ({ box, rotate, enable = true, onRotateStart, onRotate, on
     }
 
     function handleMouseMove(event: MouseEvent) {
+      event.stopPropagation();
+      event.preventDefault();
       const currentPostion = {
         x: event.clientX,
         y: event.clientY,
@@ -62,7 +64,9 @@ const RotateControl = ({ box, rotate, enable = true, onRotateStart, onRotate, on
       lastRotate.current = rotate + delta;
     }
 
-    function handleMouseUp () {
+    function handleMouseUp (event: MouseEvent) {
+      event.stopPropagation();
+      event.preventDefault();
       if(lastRotate.current) {
         onRotateStop && onRotateStop(lastRotate.current);
       }

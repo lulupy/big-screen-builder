@@ -39,10 +39,12 @@ export interface IEventItem {
   action: string,
 }
 
+
 export interface IItem extends IBaseEmitter<ItemEvents> {
   id: string,
   size: ISize,
   position: IPosition,
+  rotate: number,
   component: IComponent,
   select: () => void,
   setX: (x: number) => void,
@@ -51,7 +53,8 @@ export interface IItem extends IBaseEmitter<ItemEvents> {
   setHeight: (height: number) => void,
   setPoistion: (position: IPosition) => void;
   setSize: (size: ISize) => void;
-  setShape: (shape: IShape) => void,
+  setRotate: (rotate: number) => void;
+  setShape: (shape: Partial<IShape>) => void,
   setPropConfigValue: (propName: string, propValue: unknown) => void,
   getPropConfigValue: () => { [key:string] : unknown },
   setEventConfigValue: (eventName: string, evnetItem: IEventItem) => void,

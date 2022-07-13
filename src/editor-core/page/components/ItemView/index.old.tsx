@@ -84,6 +84,7 @@ const ItemView = ({ item, page, isActive } : IItemViewProps) => {
             height: size.height + delta.height,
           },
           position,
+          rotate: 0,
         });
       }}
       resizeHandleComponent={{

@@ -13,7 +13,7 @@ interface IItemViewProps {
   isActive: boolean,
 }
 const ItemView = ({ item, page, isActive } : IItemViewProps) => {
-  const [{size, position}, setShape] = React.useState(item.getShape());
+  const [{size, position, rotate}, setShape] = React.useState(item.getShape());
   const [dataSource, setDataSoure] = React.useState<IDataSource | null>(null);
   const [properties, setProperties] = React.useState(item.getPropConfigValue());
   const { Component } = item.component;
@@ -56,14 +56,17 @@ const ItemView = ({ item, page, isActive } : IItemViewProps) => {
   return (
     <Rrd
       style={{ 
-        border: isActive ? '1px solid #59c7f9' : 'none',
+        border: '1px solid #ccc',
+        borderColor: isActive ? '#59c7f9' : '#ccc',
         position: 'absolute',
         top: 0,
         left: 0,
+        boxSizing: 'border-box',
       }}
       onClick={handleSelectItem}
       size={size}
       position={position}
+      rotate={rotate}
       enableResizing={isActive}
       enableRotate={isActive}
       onDragStop={(e, d) => {
@@ -86,8 +89,17 @@ const ItemView = ({ item, page, isActive } : IItemViewProps) => {
           position,
         });
       }}
+      onRotateStop={(rotate) => {
+        item.setRotate(rotate);
+      }}
     >
-      <div>
+      <div
+        style={{
+          overflow: 'hidden',
+          height: '100%',
+          width: '100%',
+        }}
+      >
         {item.id}
         <button onClick={() => {
           item.setPoistion({ x: 0, y: 0 });

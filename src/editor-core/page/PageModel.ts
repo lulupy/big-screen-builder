@@ -32,7 +32,7 @@ class PageModel extends BaseEmitter<PageEvents> implements IPage {
     this.emit('itemsChange', this.items);
   }
   createItem(size: ISize, position: IPosition, cmpt: IComponent) {
-    const item = new ItemModel({ size, position, component: cmpt });
+    const item = new ItemModel({ size, position, rotate: 0, component: cmpt });
     return item;
   }
   getItems() {

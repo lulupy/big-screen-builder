@@ -44,6 +44,12 @@ const BaseConfig = ({ item }: IBaseConfigProps) => {
         item.setHeight(height);
       },
     }},
+    {name: 'rotate', label: '旋转', type: 'number', inputProps: {
+      onBlur: async () => {
+        const { rotate } = await form.validateFields(['rotate']);
+        item.setRotate(rotate);
+      },
+    }},
     ...properties.map(property => ({
       ...property,
       inputProps: {
@@ -62,6 +68,7 @@ const BaseConfig = ({ item }: IBaseConfigProps) => {
       const values = {
         ...shape.size,
         ...shape.position,
+        rotate: shape.rotate,
       };
       form.setFieldsValue(values);
     });
@@ -73,6 +80,7 @@ const BaseConfig = ({ item }: IBaseConfigProps) => {
     const values = {
       ...shape.size,
       ...shape.position,
+      rotate: shape.rotate,
       ...item.getPropConfigValue(),
     };
     form.setFieldsValue(values);

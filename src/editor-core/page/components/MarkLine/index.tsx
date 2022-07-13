@@ -31,10 +31,10 @@ const MarkLine = ({ page }: IMakeLineProps) => {
       const isDownward = (data.y - data.lastY) > 0;
       const curPosition = { x: data.x, y: data.y };
       const curSize = item.getShape().size;
-      const curBoundary = getRectBoundary({ position: curPosition, size: curSize });
+      const curBoundary = getRectBoundary( curSize, curPosition);
       const items = page.getItems().filter(it => it !== item);
       items.forEach(it => {
-        const boundary = getRectBoundary(it.getShape());
+        const boundary = getRectBoundary(it.getShape().size, it.getShape().position);
         setMarkLineShowMap(getMarkLineShowMap(boundary, curBoundary, isRightward, isDownward));
       });
     });

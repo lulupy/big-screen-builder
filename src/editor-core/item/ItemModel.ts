@@ -8,6 +8,7 @@ import { DeserializeEvent } from "../interface";
 interface IItemModelOptions {
   size: ISize,
   position: IPosition,
+  rotate: number,
   component: IComponent,
 };
 
@@ -15,6 +16,7 @@ class ItemModel extends BaseEmitter<ItemEvents> implements IItem {
   id;
   size;
   position;
+  rotate;
   component;
   protected propConfigValue: { [key: string]: unknown };
   protected dataConfigValue: IDataConfigValue;
@@ -24,6 +26,7 @@ class ItemModel extends BaseEmitter<ItemEvents> implements IItem {
     this.id =  `${+new Date()}`;
     this.size = options.size;
     this.position = options.position;
+    this.rotate = options.rotate;
     this.component = options.component;
     this.propConfigValue = {};
     this.eventConfigValue = {};
@@ -65,15 +68,27 @@ class ItemModel extends BaseEmitter<ItemEvents> implements IItem {
     this.size = size;
     this.emitShapeChange();
   }
-  setShape(shape: IShape) {
-    this.size = shape.size;
-    this.position = shape.position;
+  setRotate(rotate: number) {
+    this.rotate = rotate;
+    this.emitShapeChange();
+  }
+  setShape(shape: Partial<IShape>) {
+    if(shape.size) {
+      this.size = shape.size;
+    }
+    if(shape.position) {
+      this.position = shape.position;
+    }
+    if(shape.rotate) {
+      this.rotate = shape.rotate;
+    }
     this.emitShapeChange();
   }
   getShape() {
     return {
       size: this.size,
       position: this.position,
+      rotate: this.rotate,
     };
   }
   emitShapeChange() {
@@ -131,6 +146,7 @@ class ItemModel extends BaseEmitter<ItemEvents> implements IItem {
       id: this.id,
       size: this.size,
       position: this.position,
+      rotate: this.rotate,
       propConfigValue: this.propConfigValue,
       dataConfigValue: this.dataConfigValue,
       eventConfigValue: this.eventConfigValue,
@@ -143,6 +159,7 @@ class ItemModel extends BaseEmitter<ItemEvents> implements IItem {
     const item =  new ItemModel({
       size: data.size,
       position: data.position,
+      rotate: data.rotate,
       component: cmpt,
     });
     item.id = data.id;

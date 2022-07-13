@@ -16,6 +16,7 @@ export interface IPosition {
 export interface IShape {
   size: ISize,
   position: IPosition,
+  rotate: number,
 }
 
 export enum ScaleMode {
