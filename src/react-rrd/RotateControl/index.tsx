@@ -29,7 +29,8 @@ interface RotateControlProps {
 const RotateControl = ({ box, rotate, enable = true, onRotateStart, onRotate, onRotateStop }: RotateControlProps) => {
   const lastRotate = React.useRef<number | null>(null);
   const handleRotateMouseDown = (event: React.MouseEvent) => {
-    event.stopPropagation()
+    event.stopPropagation();
+    event.preventDefault(); //  防止文字选中
     // 计算鼠标按下时的位置
 
     onRotateStart && onRotateStart(rotate);

@@ -5,7 +5,6 @@ interface EditorMenuProps {
   components: IComponent[],
 }
 
-
 const EditorMenu = ({ components } : EditorMenuProps) => {
   return (
     <div>

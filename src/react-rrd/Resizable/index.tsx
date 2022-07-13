@@ -1,9 +1,11 @@
 import React from 'react';
 import rotatePoint from './utils/rotatePoint';
+import { offsetXYFromParent } from './utils/offsetXYFromParent';
 import createGetRotatePoint from './utils/createGetRotatePoint';
 import Vector2 from './utils/math2d/Vector2';
 import type { Direction, Size, Position } from './inteface';
 import './index.css';
+
 
 
 export type ResizeStartCallback = (event: React.MouseEvent, dir: Direction) => void;
@@ -13,6 +15,7 @@ interface ResizableProps {
   enable?: boolean,
   style?: React.CSSProperties;
   className?: string;
+  offsetParent?: HTMLElement,
   size: Size;
   position: Position,
   rotate: number,
@@ -27,7 +30,7 @@ function hasDirection(dir: 'top' | 'right' | 'bottom' | 'left', target: Directio
 
 
 const Resizable = React.forwardRef<HTMLDivElement, ResizableProps>((props: ResizableProps, ref) => {
-  const { onResizeStart, onResize, onResizeStop, size, position, rotate, style, enable = true, ...other } = props;
+  const { onResizeStart, onResize, onResizeStop, size, position, rotate, style, offsetParent: offsetParentProp, className = '', enable = true, ...other } = props;
   // 记录最后一次mousemove后位置信息
   const lastSizeAndPosition = React.useRef<{size: Size, position: Position} | null>(null);
   const handleMouseDown = React.useCallback((direction: Direction, event: React.MouseEvent) => {
@@ -71,15 +74,11 @@ const Resizable = React.forwardRef<HTMLDivElement, ResizableProps>((props: Resiz
       let newRotatedTopLeft = { ...rotatedTopLeft};
       let newRotatedBottomRight = {...rotatedBottomRight};
 
-      // 这里只考虑了PC端的情况, 如果需要考虑移动端的话, 那么对应的事件为React.TouchEvent
-      // 并且需要对取clientX做兼容, 对于TouchEvent： event: touches[0].clientX
-      // 可以参考代码: https://github.com/bokuweb/re-resizable/blob/master/src/index.tsx#L677-L689
-
+      
+      const node = (ref as React.MutableRefObject<HTMLDivElement>).current;
+      const offsetParent = offsetParentProp || node.offsetParent || node.ownerDocument.body;
       // 这里鼠标位置是相对于视口的, 如果box是希望参照某个容器来定位, 需要计算偏移量
-      const mousePosition = {
-        x: event.clientX,
-        y: event.clientY,
-      };
+      const mousePosition = offsetXYFromParent(event, offsetParent, 1);
 
       if(hasDirection('bottom', direction)) {
         const moveVecAtDir = getMoveVecAtDir(mousePosition, direction, 'bottom');
@@ -134,14 +133,14 @@ const Resizable = React.forwardRef<HTMLDivElement, ResizableProps>((props: Resiz
     window.addEventListener('mousemove', mouseMove);
     window.addEventListener('mouseup', mouseUp);
 
-  }, [size, position, rotate, onResize, onResizeStop, onResizeStart]);
+  }, [size, position, rotate, onResize, onResizeStop, onResizeStart, ref]);
 
   return (
 
     <div
       {...other}
       ref={ref}
-      className='resize-wrapper'
+      className={`resize-wrapper ${className}`}
       style={{
         ...style,
         ...size,

@@ -1,16 +1,8 @@
 import { useNavigate } from 'react-router';
 import editor from '../../default/editor';
-import {  EditorView, PageModel } from '../../editor-core';
+import {  EditorView } from '../../editor-core';
 
 const Editor = () => {
-  const data = localStorage.getItem('data');
-  if(data) {
-    editor.deserializePage(JSON.parse(data))
-  } else {
-    const page = new PageModel();
-    editor.setPage(page);
-  }
-
   let navigate = useNavigate();
 
   const handleSave = () => {

@@ -50,6 +50,7 @@ interface Props {
   onRotateStart?: RrdRotateStartCallback;
   onRotate?: RrdRotateCallback;
   onRotateStop?: RrdRotateStopCallback;
+  onClick?: any,
 
 }
 
@@ -63,94 +64,116 @@ export interface Size {
   height:  number;
 }
 const Rrd = (props: Props) => {
-  const [positionState, setPositionState] = React.useState({x: 100, y: 100});
-  const [sizeState, setSizeState] = React.useState({width: 100, height: 100});
-  const [rotateState, setRotateState] = React.useState(30);
+  const {
+    size: sizeProp,
+    position: positionProp,
+    rotate: rotateProp,
+    style,
+    className,
+    children,
+    enableResizing,
+    enableRotate,
+    onDragStart,
+    onDrag,
+    onDragStop,
+    onResizeStart,
+    onResize,
+    onResizeStop,
+    onRotateStart,
+    onRotate,
+    onRotateStop,
+    ...other
+  } = props;
+  const [positionState, setPositionState] = React.useState(positionProp || {x: 100, y: 100});
+  const [sizeState, setSizeState] = React.useState(sizeProp || {width: 100, height: 100});
+  const [rotateState, setRotateState] = React.useState(rotateProp || 0);
   const [isDragging, setIsDragging] = React.useState(false);
   const [isResizing, setIsResizing] = React.useState(false);
   const [isRotating, setIsRotating] = React.useState(false);
   const box = React.useRef(null);
 
-  const position = (isDragging || isResizing) ? positionState : (props.position || positionState);
-  const size = isResizing ? sizeState : (props.size || sizeState);
-  const rotate = isRotating ? rotateState : (props.rotate || rotateState);
+  const position = (isDragging || isResizing) ? positionState : (positionProp || positionState);
+  const size = isResizing ? sizeState : (sizeProp || sizeState);
+  const rotate = isRotating ? rotateState : (rotateProp || rotateState);
   return (
     <Draggable
       position={position}
       onStart={(event: RrdDragEvent, data: DraggableData) => {
-        props.onDragStart && props.onDragStart(event, data);
+        onDragStart && onDragStart(event, data);
         flushSync(() => {
-          if(props.position) {
-            setPositionState(props.position);
+          if(positionProp) {
+            setPositionState(positionProp);
           }
         })
         setIsDragging(true);
       }}
       onDrag={(event: RrdDragEvent, data: DraggableData) => {
-        props.onDrag && props.onDrag(event, data);
+        onDrag && onDrag(event, data);
         setPositionState({
           x: data.x,
           y: data.y,
         });
       }}
       onStop={(event: RrdDragEvent, data: DraggableData) => {
-        props.onDragStop && props.onDragStop(event, data);
+        onDragStop && onDragStop(event, data);
         setIsDragging(false);
       }}
     >
       <Resizable
-        style={props.style}
+        {...other}
+        className={className}
+        style={style}
         position={position}
         size={size}
         ref={box}
         rotate={rotate}
-        enable={props.enableResizing}
+        enable={enableResizing}
         onResizeStart={(event, dir) => {
-          props.onResizeStart && props.onResizeStart(event, dir);
+          onResizeStart && onResizeStart(event, dir);
           flushSync(() => {
-            if(props.size) {
-              setSizeState(props.size);
+            if(sizeProp) {
+              setSizeState(sizeProp);
             }
-            if(props.position) {
-              setPositionState(props.position);
+            if(positionProp) {
+              setPositionState(positionProp);
             }
           })
           setIsResizing(true);
         }}
         onResize={(event, direction, size, position) => {
-          props.onResize && props.onResize(event, direction, size, position);
+          onResize && onResize(event, direction, size, position);
           setPositionState(position);
           setSizeState(size);
         }}
         onResizeStop={(event, direction, size, position) => {
-          props.onResizeStop && props.onResizeStop(event, direction, size, position);
+          onResizeStop && onResizeStop(event, direction, size, position);
           setIsResizing(false);
         }}
       >
         <RotateControl
-          enable={props.enableRotate}
+          enable={enableRotate}
           rotate={rotate}
           box={box}
           onRotateStart={(startRotate) => {
-            props.onRotateStart && props.onRotateStart(startRotate);
+            onRotateStart && onRotateStart(startRotate);
             flushSync(() => {
-              if(props.rotate) {
-                setRotateState(props.rotate);
+              if(rotateProp) {
+                setRotateState(rotateProp);
               }
             })
             setIsRotating(true);
           }}
           onRotate={(rotate) => {
-            props.onRotate && props.onRotate(rotate);
+            onRotate && onRotate(rotate);
             setRotateState(rotate);
           }}
           onRotateStop={(rotate) => {
-            props.onRotateStop && props.onRotateStop(rotate);
+            onRotateStop && onRotateStop(rotate);
             setIsRotating(false);
           }}
           
         />
-        {props.children}
+        {children}
       </Resizable>
     </Draggable>
   );

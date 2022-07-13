@@ -1,11 +1,11 @@
 import React, { SyntheticEvent } from 'react';
-import Rrd from '../../../../react-rrd';
+import { Rnd } from 'react-rnd';
 import { IDataSource } from '../../../DataSource/AbstractDataSource';
 import StaticDataSource from '../../../DataSource/StaticDataSource';
 import { IItem } from '../../../item';
 import { IDataConfigValue } from '../../../item/IItem';
 import { IPage, IShape } from '../../IPage';
-
+import ResizeHandle from './ResizeHandle';
 
 interface IItemViewProps {
   item: IItem,
@@ -53,19 +53,16 @@ const ItemView = ({ item, page, isActive } : IItemViewProps) => {
     item.select();
   }, [item]);
 
+
   return (
-    <Rrd
+    <Rnd
       style={{ 
         border: isActive ? '1px solid #59c7f9' : 'none',
-        position: 'absolute',
-        top: 0,
-        left: 0,
       }}
       onClick={handleSelectItem}
       size={size}
       position={position}
       enableResizing={isActive}
-      enableRotate={isActive}
       onDragStop={(e, d) => {
         e.preventDefault();
         e.stopPropagation();
@@ -77,14 +74,27 @@ const ItemView = ({ item, page, isActive } : IItemViewProps) => {
       onDrag={(e, data) => {
         page.emit('itemMove', { item, data });
       }}
-      onResizeStop={(e, direction, size, position) => {
+      onResizeStop={(e, direction, ref, delta, position) => {
         e.preventDefault();
         e.stopPropagation();
         // 注意: 改变size的时候, position也有可能被改变, 比如向上改变大小时
         item.setShape({
-          size,
+          size: {
+            width: size.width + delta.width,
+            height: size.height + delta.height,
+          },
           position,
         });
+      }}
+      resizeHandleComponent={{
+        top: <ResizeHandle />,
+        right: <ResizeHandle />,
+        bottom: <ResizeHandle />,
+        left: <ResizeHandle />,
+        topRight: <ResizeHandle />,
+        bottomRight: <ResizeHandle />,
+        bottomLeft: <ResizeHandle />,
+        topLeft: <ResizeHandle />,
       }}
     >
       <div>
@@ -99,7 +109,7 @@ const ItemView = ({ item, page, isActive } : IItemViewProps) => {
         <Component properties={properties} dataSource={dataSource} />
       </div>
 
-    </Rrd>
+    </Rnd>
   );
 }
 

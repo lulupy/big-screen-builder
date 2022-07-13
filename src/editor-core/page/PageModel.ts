@@ -14,12 +14,14 @@ interface IPageModelOptions {
 const defaultSize = { width: 1000, height: 1000, };
 
 class PageModel extends BaseEmitter<PageEvents> implements IPage {
+  private id: string;
   size: ISize;
   scaleMode: ScaleMode;
   items: IItem[];
   protected currentItem: IItem | null;
   constructor(options: IPageModelOptions = { size: defaultSize, scaleMode: ScaleMode.uniform }) {
     super();
+    this.id = `${+new Date()}`;
     this.size = options.size;
     this.scaleMode = options.scaleMode;
     this.items = [];
