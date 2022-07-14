@@ -26,17 +26,30 @@ export enum ScaleMode {
   noScale, // 保持原始尺寸
 }
 
+export interface IPageConfig {
+  size: ISize;
+  scaleMode: ScaleMode;
+  backgroundColor: string;
+}
+
 export type PageEvents = {
   itemsChange: IItem[];
   currentItemChange: IItem | null,
   itemMove: { item: IItem, data: DraggableData }
   itemMoveStop: IItem,
+  configChange: IPageConfig,
 };
 
 
 export interface IPage extends IBaseEmitter<PageEvents> {
   scaleMode: ScaleMode,
   size: ISize,
+  backgroundColor: string,
+  setWidth: (width: number) => void;
+  setHeight: (height: number) => void;
+  setScaleMode: (scaleMode: ScaleMode) => void;
+  setBackgroundColor: (color: string) => void;
+  getConfig: () => IPageConfig;
   addItem: (size: ISize, position: IPosition, cmpt: IComponent) => void;
   getItems: () => IItem[],
   setCurrentItem: (item: IItem | null) => void,

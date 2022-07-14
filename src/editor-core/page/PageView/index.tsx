@@ -4,7 +4,7 @@ import { IComponent } from '../../component';
 import { COMPONENT_TYPE } from '../../constants';
 import ItemView from '../components/ItemView';
 import MarkLine from '../components/MarkLine';
-import { IPage } from '../IPage';
+import { IPage, IPageConfig } from '../IPage';
 import './index.css';
 
 interface IPageViewProps {
@@ -13,6 +13,7 @@ interface IPageViewProps {
 
 const PageView = ({ page }:IPageViewProps) => {
   const ref = React.useRef<HTMLDivElement | null>(null);
+  const [{size, backgroundColor}, setConfig] = React.useState<Omit<IPageConfig, 'scaleMode'>>(page.getConfig());
   const [{ isOver }, drop] = useDrop(() => ({
     accept: COMPONENT_TYPE,
     // drop回调函数
@@ -35,7 +36,7 @@ const PageView = ({ page }:IPageViewProps) => {
   }));
 
   const opacity = isOver ? 0.7 : 1;
-  const { width, height } = page.size;
+  const { width, height } = size;
   // 因为当items改变时, 需要更改页面, 所以使用useState
   const [items, setItems] = React.useState(page.getItems());
   const [current, setCurrent] = React.useState(page.getCurrentItem());
@@ -56,6 +57,17 @@ const PageView = ({ page }:IPageViewProps) => {
     });
   }, [page]);
 
+  React.useEffect(() => {
+    console.log(page);
+    page.on('configChange', ({ size, backgroundColor }) => {
+      console.log('configChange');
+      setConfig({
+        size,
+        backgroundColor,
+      })
+    });
+  }, [page]);
+
   const handlePageClick = React.useCallback(() => {
     page.setCurrentItem(null);
   }, [page]);
@@ -64,7 +76,7 @@ const PageView = ({ page }:IPageViewProps) => {
   return (
     <div
       ref={ref}
-      style={{width, height, opacity}}
+      style={{width, height, opacity, backgroundColor}}
       className="page"
       onClick={handlePageClick}
     >

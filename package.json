@@ -18,6 +18,7 @@
     "monaco-editor": "0.33.0",
     "react": "^18.2.0",
     "react-collapse": "^5.1.1",
+    "react-color": "^2.19.3",
     "react-dnd": "^16.0.1",
     "react-dnd-html5-backend": "^16.0.1",
     "react-dom": "^18.2.0",
@@ -55,6 +56,7 @@
   "devDependencies": {
     "@types/gl-matrix": "^3.2.0",
     "@types/react-collapse": "^5.0.1",
+    "@types/react-color": "^3.0.6",
     "customize-cra": "^1.0.0",
     "monaco-editor-webpack-plugin": "^7.0.1",
     "react-app-rewired": "^2.2.1"

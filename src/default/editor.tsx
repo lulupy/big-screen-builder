@@ -11,6 +11,7 @@ import decoration1Component from './components/decoration1Component';
 import capsuleChartComponent from './components/capsuleChartComponent';
 import activeRingChartComponent from './components/activeRingChartComponent';
 import textComponent from './components/textComponent';
+import ColorPicker from '../editor-core/components/ColorPicker';
 
 
 
@@ -29,6 +30,7 @@ editor.resisterComponent('text', textComponent);
 
 editor.resisterInputType('input', <Input />);
 editor.resisterInputType('number', <InputNumber />);
+editor.resisterInputType('color', <ColorPicker />);
 
 // 之前创建page的逻辑放在组件中, 由于组件可能会多次运行, 这段逻辑也会多次执行
 const data = localStorage.getItem('data');
