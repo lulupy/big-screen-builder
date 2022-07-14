@@ -1,15 +1,15 @@
 import React from 'react';
 import { ComponentModel } from "../../editor-core";
-import { IViewComponentProps } from '../../editor-core/interface';
+import { IComponentProps } from '../../editor-core/interface';
 
 
 
 
-const Table = ({ dataSource }: any) => {
+const Table = ({ dataSource }: IComponentProps) => {
   return <div>Table</div>;
 }
 
-const ViewTable = ({ eventBus }: IViewComponentProps) => {
+const ViewTable = ({ eventBus }: IComponentProps) => {
   const [count, setCount] = React.useState(0);
   React.useEffect(() => {
     const lisener = () => {

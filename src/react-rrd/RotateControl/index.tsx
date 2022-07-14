@@ -1,4 +1,5 @@
 import React from 'react';
+import { RedoOutlined } from '@ant-design/icons';
 import './index.css';
 
 interface Position {
@@ -78,7 +79,7 @@ const RotateControl = ({ box, rotate, enable = true, onRotateStart, onRotate, on
   };
   
   return enable ? (
-    <div className='rotate-control' onMouseDown={handleRotateMouseDown}></div>
+    <RedoOutlined className='rotate-control' onMouseDown={handleRotateMouseDown}/>
   ) : null;
 }
 

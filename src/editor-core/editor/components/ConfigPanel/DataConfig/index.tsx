@@ -11,6 +11,10 @@ interface IDataConfigProps {
 }
 
 const DataConfig = ({ item }: IDataConfigProps) => {
+  const { dataFields } = item.component;
+  if(!dataFields || dataFields.length === 0) {
+    return <div>无需配置</div>;
+  }
   return (
     <div>
       <StaticDataSourceConfig item={item} />

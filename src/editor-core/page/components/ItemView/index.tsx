@@ -56,8 +56,7 @@ const ItemView = ({ item, page, isActive } : IItemViewProps) => {
   return (
     <Rrd
       style={{ 
-        border: '1px solid #ccc',
-        borderColor: isActive ? '#59c7f9' : '#ccc',
+        border: isActive ? '1px solid #59c7f9': 'none',
         position: 'absolute',
         top: 0,
         left: 0,
@@ -101,14 +100,6 @@ const ItemView = ({ item, page, isActive } : IItemViewProps) => {
           width: '100%',
         }}
       >
-        {item.id}
-        <button onClick={() => {
-          item.setPoistion({ x: 0, y: 0 });
-          // item.setSize();
-          // item.setShape();
-        }}>
-          changePosition
-        </button>
         <Component properties={properties} dataSource={dataSource} />
       </div>
 

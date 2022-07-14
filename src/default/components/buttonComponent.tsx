@@ -1,12 +1,13 @@
 import { ComponentModel } from "../../editor-core";
-import { IViewComponentProps } from "../../editor-core/interface";
+import { IComponentProps } from "../../editor-core/interface";
+
 
 
 const Button = ({}) => { 
   return <div>Button</div>;
 }
 
-const ViewButton = ({ eventBus }: IViewComponentProps) => {
+const ViewButton = ({ eventBus }: IComponentProps) => {
   return (
     <div onClick={() => {
       console.log('click');

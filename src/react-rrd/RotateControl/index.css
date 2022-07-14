@@ -1,9 +1,9 @@
 .rotate-control {
+  color: #59c7f9;
   position: absolute;
-  height: 10px;
-  width: 10px;
-  background: blue;
-  top: -20px;
+  font-size: 20px;
+  top: -30px;
   left: 50%;
+  transform: translateX(-50%);
   cursor: pointer;
 }

@@ -5,7 +5,6 @@ import RotateControl from './RotateControl';
 import Resizable from './Resizable';
 import type { ResizeStartCallback, ResizeCallback } from './Resizable';
 import type { RotateStartCallack, RotateCallack } from './RotateControl';
-import "./index.css";
 
 const Draggable: any = DraggableRoot;
 export type DraggableData = {

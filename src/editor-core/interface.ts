@@ -1,4 +1,5 @@
 import ItemEventBus from "../preview/ItemEventBus";
+import { IDataSource } from "./DataSource/AbstractDataSource";
 import { IEditor } from "./editor";
 
 interface ISerialize {
@@ -10,6 +11,8 @@ export interface DeserializeEvent<T extends ISerialize> {
 	data: ReturnType<T['serialize']>;
 }
 
-export interface IViewComponentProps {
+export interface IComponentProps {
+  properties: Record<string, any>,
+  dataSource: IDataSource,
   eventBus: ItemEventBus,
 }
