@@ -30,6 +30,7 @@ export type PageEvents = {
   itemsChange: IItem[];
   currentItemChange: IItem | null,
   itemMove: { item: IItem, data: DraggableData }
+  itemMoveStop: IItem,
 };
 
 

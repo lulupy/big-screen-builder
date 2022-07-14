@@ -1,10 +1,19 @@
-import { IBoundary, IMarkLineShowMap } from '../interface';
+import { IMarkLineShowMap } from '../interface';
 
 function isNearly(targetValue: number, CurrentValue: number) {
-  const diff = 3;
+  const diff = 10;
   return Math.abs(CurrentValue - targetValue) <= diff;
 };
-export function getAllMarkLineShowMap(target: IBoundary, current: IBoundary) {
+
+interface Boundary {
+  top: number,
+  bottom: number,
+  left: number,
+  right: number,
+}
+
+
+export function getAllMarkLineShowMap(target: Boundary, current: Boundary) {
   const markLineShowMap: IMarkLineShowMap = {
     topX: null,
     centerX: null,
@@ -67,7 +76,7 @@ export function getAllMarkLineShowMap(target: IBoundary, current: IBoundary) {
  * @param isDownward y轴上拖动方向, 为true表示向下, 否则表示向上
  * @param isRightward x轴上拖动方向, 为true表示向右, 否则表示向左
  */
-export function getMarkLineShowMap(target: IBoundary, current: IBoundary, isRightward: boolean, isDownward: boolean) {
+export function getMarkLineShowMap(target: Boundary, current: Boundary, isRightward: boolean, isDownward: boolean) {
   const allMarkLineShowMap = getAllMarkLineShowMap(target, current);
   // 如果鼠标向右移动 则按从右到左的顺序显示竖线 否则按相反顺序显示
   // 如果鼠标向下移动 则按从下到上的顺序显示横线 否则按相反顺序显示

@@ -76,6 +76,7 @@ const ItemView = ({ item, page, isActive } : IItemViewProps) => {
           x: d.x,
           y: d.y,
         });
+        page.emit('itemMoveStop', item);
       }}
       onDrag={(e, data) => {
         page.emit('itemMove', { item, data });

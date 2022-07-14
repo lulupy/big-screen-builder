@@ -26,7 +26,7 @@ class ItemModel extends BaseEmitter<ItemEvents> implements IItem {
     this.id =  `${+new Date()}`;
     this.size = options.size;
     this.position = options.position;
-    this.rotate = options.rotate;
+    this.rotate = options.rotate || 0;
     this.component = options.component;
     this.propConfigValue = {};
     this.eventConfigValue = {};
@@ -50,9 +50,11 @@ class ItemModel extends BaseEmitter<ItemEvents> implements IItem {
   }
   setY(y: number)  {
     this.position.y = y;
+    console.log(y);
     this.emitShapeChange();
   }
   setPoistion(position: IPosition) {
+    console.log(position);
     this.position = position;
     this.emitShapeChange();
   }

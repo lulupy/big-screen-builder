@@ -39,6 +39,7 @@ describe('EditorModel', () => {
             "x": 10,
             "y": 10
           },
+          "rotate": 0,
           "propConfigValue": {},
           "dataConfigValue": {
             "filters": [],
@@ -63,6 +64,7 @@ describe('EditorModel', () => {
             "x": 20,
             "y": 20
           },
+          "rotate": 0,
           "propConfigValue": {},
           "eventConfigValue": {},
           "dataConfigValue": {
@@ -87,6 +89,7 @@ describe('EditorModel', () => {
             "x": 30,
             "y": 30
           },
+          "rotate": 0,
           "propConfigValue": {},
           "eventConfigValue": {},
           "dataConfigValue": {
@@ -131,6 +134,7 @@ describe('EditorModel', () => {
             "x": 10,
             "y": 10
           },
+          "rotate": 0,
           "propConfigValue": {},
           "dataConfigValue": {
             "filters": [],
@@ -154,6 +158,7 @@ describe('EditorModel', () => {
             "x": 20,
             "y": 20
           },
+          "rotate": 0,
           "propConfigValue": {},
           "dataConfigValue": {
             "filters": [],
@@ -177,6 +182,7 @@ describe('EditorModel', () => {
             "x": 30,
             "y": 30
           },
+          "rotate": 0,
           "propConfigValue": {},
           "dataConfigValue": {
             "filters": [],

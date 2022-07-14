@@ -1,16 +1,15 @@
 import React from 'react';
-import getRectBoundary from './utils/getRectBoundary';
+import { getRotatedRectBoundary } from './utils/getRectBoundary';
 import { getMarkLineShowMap } from './utils/getMarkLineShowMap';
+import { getOriginLeft, getOriginTop } from './utils/getOriginTopAndLeft';
 import { IPage } from '../../IPage';
 import './index.css';
 import { IMarkLineShowMap } from './interface';
+import getMatchConditions from './utils/getMatchConditions';
 
 interface IMakeLineProps {
   page: IPage,
 }
-
-
-
 
 
 const defaultMarkLineShowMap: IMarkLineShowMap = {
@@ -23,7 +22,6 @@ const defaultMarkLineShowMap: IMarkLineShowMap = {
 };
 
 const MarkLine = ({ page }: IMakeLineProps) => {
-
   const [markLineShowMap, setMarkLineShowMap] = React.useState(defaultMarkLineShowMap);
   React.useEffect(() => {
     page.on('itemMove', ({ item, data }) => {
@@ -31,14 +29,31 @@ const MarkLine = ({ page }: IMakeLineProps) => {
       const isDownward = (data.y - data.lastY) > 0;
       const curPosition = { x: data.x, y: data.y };
       const curSize = item.getShape().size;
-      const curBoundary = getRectBoundary( curSize, curPosition);
+      const curRotate = item.getShape().rotate;
+      const curBoundary = getRotatedRectBoundary({
+        position: curPosition,
+        size: curSize,
+        rotate: curRotate,
+      });
       const items = page.getItems().filter(it => it !== item);
       items.forEach(it => {
-        const boundary = getRectBoundary(it.getShape().size, it.getShape().position);
+        const boundary = getRotatedRectBoundary(it.getShape());
+        const conditions = getMatchConditions(boundary, curBoundary);
+        conditions.forEach(condition => {
+          if(!condition.test) return;
+          if(condition.type.includes('X')) {
+            item.setY(getOriginTop(item.getShape(), condition.drag));
+          } else {
+            item.setX(getOriginTop(it.getShape(), condition.drag));
+          }
+        });
         setMarkLineShowMap(getMarkLineShowMap(boundary, curBoundary, isRightward, isDownward));
       });
     });
-  }, []);
+    page.on('itemMoveStop', (item) => {
+      
+    })
+  }, [page]);
   return (
     <div className='mark-line'>
       {markLineShowMap.topX != null && <div className='line x-line' style={{top: markLineShowMap.topX}}></div>}

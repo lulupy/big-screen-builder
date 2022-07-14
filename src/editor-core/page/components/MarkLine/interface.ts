@@ -11,6 +11,8 @@ export interface IBoundary {
   bottom: number,
   left: number,
   right: number,
+  width: number,
+  height: number,
 }
 
 export type IMarkLineShowMap  = {
