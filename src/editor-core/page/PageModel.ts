@@ -75,6 +75,7 @@ class PageModel extends BaseEmitter<PageEvents> implements IPage {
     return {
       size: this.size,
       scaleMode: this.scaleMode,
+      backgroundColor: this.backgroundColor,
       items: this.items.map(item => item.serialize()),
     };
   }
@@ -82,6 +83,7 @@ class PageModel extends BaseEmitter<PageEvents> implements IPage {
     const page = new PageModel({
       size: data.size,
       scaleMode: data.scaleMode,
+      backgroundColor: data.backgroundColor,
     });
     page.items = data.items.map(item => ItemModel.deserialize({ data: item, editor }));
     return page;
