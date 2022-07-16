@@ -140,7 +140,18 @@ class ItemModel extends BaseEmitter<ItemEvents> implements IItem {
   remove() {
     this.component.getPage().removeItem(this);
   }
-
+  up():boolean {
+    return this.component.getPage().upItem(this);
+  }
+  down():boolean {
+    return this.component.getPage().downItem(this);
+  }
+  top():boolean {
+    return this.component.getPage().topItem(this);
+  }
+  bottom():boolean {
+    return this.component.getPage().bottomItem(this);
+  }
   emitDataConfigChange() {
     this.emit('dataConfigChange', this.getDataConfigValue());
   }

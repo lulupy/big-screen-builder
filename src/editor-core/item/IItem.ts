@@ -67,5 +67,9 @@ export interface IItem extends IBaseEmitter<ItemEvents> {
   changeFilter: (index: number, code: string) => void,
   removeFilter: (index: number) => void,
   remove: () => void,
+  up: () => boolean,
+  down: () => boolean,
+  top: () => boolean,
+  bottom: () => boolean,
   serialize: () => any,
 }

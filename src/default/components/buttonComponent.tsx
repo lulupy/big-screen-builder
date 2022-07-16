@@ -1,10 +1,11 @@
+import { Button as AntButton } from 'antd';
 import { ComponentModel } from "../../editor-core";
 import { IComponentProps } from "../../editor-core/interface";
 
 
 
 const Button = ({}) => { 
-  return <div>Button</div>;
+  return <AntButton>button</AntButton>;
 }
 
 const ViewButton = ({ eventBus }: IComponentProps) => {

@@ -79,6 +79,53 @@ class PageModel extends BaseEmitter<PageEvents> implements IPage {
   getCurrentItem() {
     return this.currentItem;
   }
+  swapItem(index1: number, index2: number) {
+    const temp = this.items[index1];
+    this.items[index1] = this.items[index2];
+    this.items[index2] = temp;
+    this.emit('itemsChange', this.items);
+    
+  }
+  // 上移
+  upItem(item: IItem): boolean {
+    console.log('上移')
+    const index = this.items.findIndex(it => item === it);
+    if(index >= this.items.length - 1) { // 到顶了
+      return false;
+    }
+    this.swapItem(index, index + 1);
+    return true;
+  }
+  // 下移
+  downItem(item: IItem): boolean {
+    const index = this.items.findIndex(it => item === it);
+    if(index <= 0) { // 到底了
+      return false;
+    }
+    this.swapItem(index, index - 1);
+    return true;
+  }
+  // 置顶
+  topItem(item: IItem) {
+    const index = this.items.findIndex(it => item === it);
+    if(index === this.items.length - 1) return false;
+
+    this.items.splice(index, 1);
+    this.items.push(item);
+    this.emit('itemsChange', this.items);
+    return true;
+  }
+  // 置底
+  bottomItem(item: IItem) {
+    const index = this.items.findIndex(it => item === it);
+    if(index === 0) return false;
+
+    this.items.splice(index, 1);
+    this.items.unshift(item);
+    this.emit('itemsChange', this.items);
+    return true;
+
+  }
   serialize() {
     return {
       size: this.size,

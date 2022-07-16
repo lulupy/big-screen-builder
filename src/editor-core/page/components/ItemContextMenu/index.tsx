@@ -19,8 +19,23 @@ interface IProps {
 function ItemContextMenu({ item, children }: IProps) {
   const handleClick = (event: React.MouseEvent) => {
     event.stopPropagation();
-    console.log(item);
     item.remove();
+  }
+  const handleUp = (event: React.MouseEvent) => {
+    event.stopPropagation();
+    item.up();
+  }
+  const handleDown = (event: React.MouseEvent) => {
+    event.stopPropagation();
+    item.down();
+  }
+  const handleTop = (event: React.MouseEvent) => {
+    event.stopPropagation();
+    item.top();
+  }
+  const handleBottom = (event: React.MouseEvent) => {
+    event.stopPropagation();
+    item.bottom();
   }
   return (
     <>
@@ -35,16 +50,16 @@ function ItemContextMenu({ item, children }: IProps) {
         <MenuItem onClick={handleClick}>
           删除
         </MenuItem>
-        <MenuItem>
+        <MenuItem onClick={handleTop}>
           置顶
         </MenuItem>
-        <MenuItem>
+        <MenuItem onClick={handleBottom}>
           置底
         </MenuItem>
-        <MenuItem>
+        <MenuItem onClick={handleUp}>
           上移
         </MenuItem>
-        <MenuItem>
+        <MenuItem onClick={handleDown}>
           下移
         </MenuItem>
       </ContextMenu>
