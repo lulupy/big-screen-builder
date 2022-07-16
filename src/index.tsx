@@ -7,7 +7,7 @@ import DragAndResize from './demos/DragAndResize';
 import DraggableDemo from './demos/DraggableDemo';
 import RotateDemo from './demos/RotateDemo';
 import ResizeDemo from './demos/ResizeDemo';
-import Demo from './editor-core/components/ColorPicker';
+import Demo from './demos/contextmenu';
 
 import reportWebVitals from './reportWebVitals';
 

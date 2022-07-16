@@ -66,5 +66,6 @@ export interface IItem extends IBaseEmitter<ItemEvents> {
   setDataSource: (dataSource: IDataSouceConfig) => void,
   changeFilter: (index: number, code: string) => void,
   removeFilter: (index: number) => void,
+  remove: () => void,
   serialize: () => any,
 }

@@ -57,6 +57,14 @@ class PageModel extends BaseEmitter<PageEvents> implements IPage {
     this.items.push(this.createItem(size, position, cmpt));
     this.emit('itemsChange', this.items);
   }
+  removeItem(item: IItem) {
+    this.items = this.items.filter(it => item !== it);
+    this.emit('itemsChange', this.items);
+
+    if(item === this.currentItem) {
+      this.setCurrentItem(null);
+    }
+  }
   createItem(size: ISize, position: IPosition, cmpt: IComponent) {
     const item = new ItemModel({ size, position, rotate: 0, component: cmpt });
     return item;

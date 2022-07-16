@@ -5,6 +5,8 @@ import StaticDataSource from '../../../DataSource/StaticDataSource';
 import { IItem } from '../../../item';
 import { IDataConfigValue } from '../../../item/IItem';
 import { IPage, IShape } from '../../IPage';
+import ItemContextMenu from '../ItemContextMenu';
+
 
 
 interface IItemViewProps {
@@ -54,56 +56,58 @@ const ItemView = ({ item, page, isActive } : IItemViewProps) => {
   }, [item]);
 
   return (
-    <Rrd
-      style={{ 
-        border: isActive ? '1px solid #59c7f9': 'none',
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        boxSizing: 'border-box',
-      }}
-      onClick={handleSelectItem}
-      size={size}
-      position={position}
-      rotate={rotate}
-      enableResizing={isActive}
-      enableRotate={isActive}
-      onDragStop={(e, d) => {
-        e.preventDefault();
-        e.stopPropagation();
-        item.setPoistion({
-          x: d.x,
-          y: d.y,
-        });
-        page.emit('itemMoveStop', item);
-      }}
-      onDrag={(e, data) => {
-        page.emit('itemMove', { item, data });
-      }}
-      onResizeStop={(e, direction, size, position) => {
-        e.preventDefault();
-        e.stopPropagation();
-        // 注意: 改变size的时候, position也有可能被改变, 比如向上改变大小时
-        item.setShape({
-          size,
-          position,
-        });
-      }}
-      onRotateStop={(rotate) => {
-        item.setRotate(rotate);
-      }}
-    >
-      <div
-        style={{
-          overflow: 'hidden',
-          height: '100%',
-          width: '100%',
+    <ItemContextMenu item={item}>
+      <Rrd
+        style={{ 
+          border: isActive ? '1px solid #59c7f9': 'none',
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          boxSizing: 'border-box',
+        }}
+        onClick={handleSelectItem}
+        size={size}
+        position={position}
+        rotate={rotate}
+        enableResizing={isActive}
+        enableRotate={isActive}
+        onDragStop={(e, d) => {
+          e.preventDefault();
+          e.stopPropagation();
+          item.setPoistion({
+            x: d.x,
+            y: d.y,
+          });
+          page.emit('itemMoveStop', item);
+        }}
+        onDrag={(e, data) => {
+          page.emit('itemMove', { item, data });
+        }}
+        onResizeStop={(e, direction, size, position) => {
+          e.preventDefault();
+          e.stopPropagation();
+          // 注意: 改变size的时候, position也有可能被改变, 比如向上改变大小时
+          item.setShape({
+            size,
+            position,
+          });
+        }}
+        onRotateStop={(rotate) => {
+          item.setRotate(rotate);
         }}
       >
-        <Component properties={properties} dataSource={dataSource} />
-      </div>
+        <div
+          style={{
+            overflow: 'hidden',
+            height: '100%',
+            width: '100%',
+          }}
+        >
+          <Component properties={properties} dataSource={dataSource} />
+        </div>
 
-    </Rrd>
+      </Rrd>
+    </ItemContextMenu>
   );
 }
 

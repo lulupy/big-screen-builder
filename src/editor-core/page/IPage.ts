@@ -51,6 +51,7 @@ export interface IPage extends IBaseEmitter<PageEvents> {
   setBackgroundColor: (color: string) => void;
   getConfig: () => IPageConfig;
   addItem: (size: ISize, position: IPosition, cmpt: IComponent) => void;
+  removeItem: (item: IItem) => void,
   getItems: () => IItem[],
   setCurrentItem: (item: IItem | null) => void,
   getCurrentItem: () => IItem | null,

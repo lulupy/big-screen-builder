@@ -137,7 +137,9 @@ class ItemModel extends BaseEmitter<ItemEvents> implements IItem {
     this.dataConfigValue.dataSource = dataSource;
     this.emitDataConfigChange();
   }
-
+  remove() {
+    this.component.getPage().removeItem(this);
+  }
 
   emitDataConfigChange() {
     this.emit('dataConfigChange', this.getDataConfigValue());
