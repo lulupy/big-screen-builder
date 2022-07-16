@@ -1,7 +1,7 @@
 import { IBoundary } from '../interface';
 
 function isNearly(targetValue: number, CurrentValue: number) {
-  const diff = 10;
+  const diff = 3;
   return Math.abs(CurrentValue - targetValue) <= diff;
 };
 

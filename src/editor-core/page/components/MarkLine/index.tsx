@@ -38,20 +38,22 @@ const MarkLine = ({ page }: IMakeLineProps) => {
       const items = page.getItems().filter(it => it !== item);
       items.forEach(it => {
         const boundary = getRotatedRectBoundary(it.getShape());
-        const conditions = getMatchConditions(boundary, curBoundary);
-        conditions.forEach(condition => {
-          if(!condition.test) return;
-          if(condition.type.includes('X')) {
-            item.setY(getOriginTop(item.getShape(), condition.drag));
-          } else {
-            item.setX(getOriginTop(it.getShape(), condition.drag));
-          }
-        });
+        // 吸附: 未完成, 在拖动期间为rrd为非受控, 所以通过item.setXY虽然可以改变rrd的position属性, 但是没有效果, 最终在mouseUp时又会被修改
+        // const conditions = getMatchConditions(boundary, curBoundary);
+        // conditions.forEach(condition => {
+        //   if(!condition.test) return;
+        //   if(condition.type.includes('X')) {
+        //     item.setY(getOriginTop(item.getShape(), condition.drag));
+        //   } else {
+        //     item.setX(getOriginLeft(it.getShape(), condition.drag));
+        //   }
+        // });
         setMarkLineShowMap(getMarkLineShowMap(boundary, curBoundary, isRightward, isDownward));
       });
     });
     page.on('itemMoveStop', (item) => {
-      
+      // 隐藏
+      setMarkLineShowMap({...defaultMarkLineShowMap});
     })
   }, [page]);
   return (

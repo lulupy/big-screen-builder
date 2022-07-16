@@ -59,7 +59,7 @@ const ItemView = ({ item, page, isActive } : IItemViewProps) => {
     <ItemContextMenu item={item}>
       <Rrd
         style={{ 
-          border: isActive ? '1px solid #59c7f9': 'none',
+          boxShadow: isActive ? '0 0 0 1px #59c7f9': 'none',
           position: 'absolute',
           top: 0,
           left: 0,
