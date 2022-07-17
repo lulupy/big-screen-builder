@@ -5,13 +5,13 @@ import { COMPONENT_TYPE } from '../../constants';
 import ItemView from '../components/ItemView';
 import MarkLine from '../components/MarkLine';
 import { IPage, IPageConfig } from '../IPage';
+import backgroundImage from '../../../default/bg.png';
 import './index.css';
 
 interface IPageViewProps {
   page: IPage,
 }
 
-const backgroundImage = 'http://datav-react.jiaminghi.com/demo/electronic-file/static/media/bg.110420cf.png';
 
 const PageView = ({ page }:IPageViewProps) => {
   const ref = React.useRef<HTMLDivElement | null>(null);

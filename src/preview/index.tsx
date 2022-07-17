@@ -2,8 +2,8 @@ import React from 'react';
 import {IPage} from '../editor-core';
 import { ISize, ScaleMode } from '../editor-core/page/IPage';
 import ItemWrapper from './ItemWrapper';
+import backgroundImage from '../default/bg.png';
 
-const backgroundImage = 'http://datav-react.jiaminghi.com/demo/electronic-file/static/media/bg.110420cf.png';
 
 interface IPreviewProps {
   page: IPage,
@@ -92,28 +92,22 @@ const Preview = ({ page }: IPreviewProps) => {
       window.removeEventListener('resize', handleResize);
     }
   }, []);
+  React.useEffect(() => {
+    window.document.body.style.background = backgroundColor;
+  }, [backgroundColor]);
   return (
     <div
       style={{
-        width: '100vw',
-        height: '100vh',
-        backgroundColor,
+        width: size.width,
+        height: size.height,
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
+        
+        backgroundImage: `url(${backgroundImage})`,
+        ...style,
       }}
     >
-      <div
-        style={{
-          width: size.width,
-          height: size.height,
-          backgroundRepeat: 'no-repeat',
-          backgroundSize: 'cover',
-          
-          backgroundImage: `url(${backgroundImage})`,
-          ...style,
-        }}
-      >
-        {items.map(item => <ItemWrapper item={item} />)}
-      </div>
-
+      {items.map(item => <ItemWrapper item={item} />)}
     </div>
   )
 }
