@@ -5,7 +5,12 @@
 
 ## 在线 DEMO
 
+
+[demo (GitHub Pages)](https://lulupy.github.io/big-screen-builder)
+
 ## 开发
+
+
 ### 安装
 ```
 yarn
@@ -20,4 +25,5 @@ yarn build
 ```
 
 ## License
+
 MIT
