@@ -1,11 +1,11 @@
 import React from 'react';
 import { getRotatedRectBoundary } from './utils/getRectBoundary';
 import { getMarkLineShowMap } from './utils/getMarkLineShowMap';
-import { getOriginLeft, getOriginTop } from './utils/getOriginTopAndLeft';
+// import { getOriginLeft, getOriginTop } from './utils/getOriginTopAndLeft';
 import { IPage } from '../../IPage';
 import './index.css';
 import { IMarkLineShowMap } from './interface';
-import getMatchConditions from './utils/getMatchConditions';
+// import getMatchConditions from './utils/getMatchConditions';
 
 interface IMakeLineProps {
   page: IPage,

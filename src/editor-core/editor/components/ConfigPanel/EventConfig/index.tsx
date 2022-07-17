@@ -1,6 +1,6 @@
 import React from 'react';
 import { QuestionCircleFilled } from '@ant-design/icons';
-import { Cascader, Col, Row, Space, Tooltip } from 'antd';
+import { Cascader, Col, Row, Tooltip } from 'antd';
 import { IItem } from '../../../../item';
 import { IEventItem } from '../../../../item/IItem';
 interface IEventConfigProps {
@@ -27,7 +27,7 @@ const EventConfig = ({item}: IEventConfigProps) => {
   });
   const handleChange = React.useCallback((eventName: string, value: (string | number)[]) => {
     item.setEventConfigValue(eventName, { target: value[0] as string, action: value[1] as string });
-  }, []);
+  }, [item]);
   return (
     <div>
       {events.map(event => {

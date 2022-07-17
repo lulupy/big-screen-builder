@@ -133,7 +133,7 @@ const Resizable = React.forwardRef<HTMLDivElement, ResizableProps>((props: Resiz
     window.addEventListener('mousemove', mouseMove);
     window.addEventListener('mouseup', mouseUp);
 
-  }, [size, position, rotate, onResize, onResizeStop, onResizeStart, ref]);
+  }, [size, position, rotate, onResize, onResizeStop, onResizeStart, ref, offsetParentProp]);
 
   return (
 

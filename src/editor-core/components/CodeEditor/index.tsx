@@ -42,7 +42,7 @@ const CodeEditor = ({editorOptions, value, onChange, style, ...other} : ICodeEdi
         onChange && onChange(editor.getValue());
       });
     }
-  }, []);
+  }, [container, editorOptions, onChange]);
   React.useEffect(() => {
     if(
       container.current

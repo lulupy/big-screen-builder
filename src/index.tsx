@@ -3,11 +3,11 @@ import ReactDOM from 'react-dom/client';
 import { HashRouter  } from 'react-router-dom';
 import './index.css';
 import App from './App';
-import DragAndResize from './demos/DragAndResize';
-import DraggableDemo from './demos/DraggableDemo';
-import RotateDemo from './demos/RotateDemo';
-import ResizeDemo from './demos/ResizeDemo';
-import Demo from './demos/char.js';
+// import DragAndResize from './demos/DragAndResize';
+// import DraggableDemo from './demos/DraggableDemo';
+// import RotateDemo from './demos/RotateDemo';
+// import ResizeDemo from './demos/ResizeDemo';
+// import Demo from './demos/char.js';
 
 import reportWebVitals from './reportWebVitals';
 

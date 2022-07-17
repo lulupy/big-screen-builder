@@ -1,4 +1,3 @@
-import { url } from 'inspector';
 import React from 'react';
 import {IPage} from '../editor-core';
 import { ISize, ScaleMode } from '../editor-core/page/IPage';
