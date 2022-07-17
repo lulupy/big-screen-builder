@@ -1,6 +1,7 @@
 {
   "name": "big-screen-builder",
   "version": "0.1.0",
+  "homepage": "https://lulupy.github.io/big-screen-builder",
   "private": true,
   "dependencies": {
     "@jiaminghi/data-view-react": "^1.2.5",
