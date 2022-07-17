@@ -1,6 +1,7 @@
 import ItemEventBus from "../preview/ItemEventBus";
 import { IDataSource } from "./DataSource/AbstractDataSource";
 import { IEditor } from "./editor";
+import { IShape } from "./page/IPage";
 
 interface ISerialize {
   serialize: () => any,
@@ -15,4 +16,5 @@ export interface IComponentProps {
   properties: Record<string, any>,
   dataSource: IDataSource,
   eventBus: ItemEventBus,
+  shape: IShape,
 }

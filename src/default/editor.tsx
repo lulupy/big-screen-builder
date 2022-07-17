@@ -8,8 +8,11 @@ import testComponent from './components/testComponent';
 import box1Component from './components/box1Component';
 import box3Component from './components/box3Component';
 import decoration1Component from './components/decoration1Component';
+import decoration2Component from './components/decoration2Component';
 import capsuleChartComponent from './components/capsuleChartComponent';
 import activeRingChartComponent from './components/activeRingChartComponent';
+import pieChartComponent from './components/pieChartComponent';
+
 import textComponent from './components/textComponent';
 import ColorPicker from '../editor-core/components/ColorPicker';
 
@@ -24,8 +27,10 @@ editor.resisterComponent('table', tableComponent);
 editor.resisterComponent('box1', box1Component);
 editor.resisterComponent('box3', box3Component);
 editor.resisterComponent('decoration1', decoration1Component);
+editor.resisterComponent('decoration2', decoration2Component);
 editor.resisterComponent('capsuleChart', capsuleChartComponent);
 editor.resisterComponent('activeRingChart', activeRingChartComponent);
+editor.resisterComponent('pieChart', pieChartComponent);
 editor.resisterComponent('text', textComponent);
 
 editor.resisterInputType('input', <Input />);

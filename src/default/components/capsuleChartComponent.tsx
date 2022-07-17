@@ -6,7 +6,7 @@ import { IComponentProps } from "../../editor-core/interface";
 
 
 
-const Component = ({ properties, dataSource }: IComponentProps) => {
+const Component = ({ properties,shape, dataSource }: IComponentProps) => {
   const [data, setData] = React.useState<Record<string, unknown>[]>([
     {
       name: '南阳',
@@ -24,9 +24,15 @@ const Component = ({ properties, dataSource }: IComponentProps) => {
     getData();
   }, [dataSource]);
   return (
-    <DataVWrapper>
-      <CapsuleChart backgroundColor={properties.backgroundColor} config={{ data }}></CapsuleChart>
-    </DataVWrapper>
+    <CapsuleChart
+      style={{
+        height: shape.size.height,
+        width: shape.size.width,
+      }}
+      backgroundColor={properties.backgroundColor}
+      config={{ data }}>
+      
+    </CapsuleChart>
   );
 }
 

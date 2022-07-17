@@ -10,6 +10,7 @@ const ItemWrapper = ({ item }: IItemWrapperProps) => {
   const { ViewComponent } = item.component;
   const { id } = item;
   const { size, position, rotate } = item.getShape();
+  const properties = item.getPropConfigValue();
   const eventConfig = item.getEventConfigValue();
   const eventBus = new ItemEventBus(id, eventConfig);
 
@@ -25,7 +26,7 @@ const ItemWrapper = ({ item }: IItemWrapperProps) => {
         transform: `translate(${position.x}px, ${position.y}px) rotate(${rotate}deg)`,
       }}
     >
-      <ViewComponent eventBus={eventBus}></ViewComponent>
+      <ViewComponent eventBus={eventBus} properties={properties} shape={{size, position, rotate}}></ViewComponent>
     </div>
   );
 }

@@ -26,7 +26,7 @@ const EidorView = ({ editor, onSave, onPreview }: EditorViewProps) => {
           <div className='editor__header'>
             <Button onClick={onSave}>保存</Button>
             <Button onClick={onPreview}>预览</Button>
-            <Button>btn1</Button>
+            <Button onClick={() => page.clearItems()}>清空</Button>
           </div>
           <div className='editor__content'>
             <div className='editor__menu'>

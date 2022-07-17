@@ -1,5 +1,5 @@
 import { ComponentModel } from "../../editor-core";
-import { Decoration1 } from "@jiaminghi/data-view-react";
+import { Decoration2 } from "@jiaminghi/data-view-react";
 import DataVWrapper from './datav-support/DataVWrapper';
 import { IComponentProps } from "../../editor-core/interface";
 
@@ -8,27 +8,27 @@ import { IComponentProps } from "../../editor-core/interface";
 const Component = ({ properties, shape }: IComponentProps) => {
   return (
     <DataVWrapper>
-      <Decoration1
+      <Decoration2
         backgroundColor={properties.backgroundColor}
         style={{
           height: shape.size.height,
           width: shape.size.width,
         }}
       >
-      </Decoration1>
+      </Decoration2>
     </DataVWrapper>
   );
 }
 
 
-const decoration1Component = new ComponentModel({
-  name: 'decoration1',
-  label: '装饰1',
+const decoration2Component = new ComponentModel({
+  name: 'decoration2',
+  label: '装饰2',
   icon: '',
   properties: [
     { name: 'backgroundColor', label: '背景色	',  type: 'input' },
   ],
-  defaultSize: { width: 200, height: 200 },
+  defaultSize: { width: 100, height: 20 },
   dataFields: [],
   actions: [],
   events: [],
@@ -37,4 +37,4 @@ const decoration1Component = new ComponentModel({
 });
 
 
-export default decoration1Component;
+export default decoration2Component;

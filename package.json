@@ -13,6 +13,8 @@
     "@types/react-dom": "^18.0.5",
     "ahooks": "^3.5.2",
     "antd": "^4.21.4",
+    "chart.js": "^3.8.0",
+    "d3": "^7.6.1",
     "gl-matrix": "^3.4.3",
     "mitt": "^3.0.0",
     "monaco-editor": "0.33.0",
@@ -55,6 +57,7 @@
     ]
   },
   "devDependencies": {
+    "@types/d3": "^7.4.0",
     "@types/gl-matrix": "^3.2.0",
     "@types/react-collapse": "^5.0.1",
     "@types/react-color": "^3.0.6",

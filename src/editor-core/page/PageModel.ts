@@ -12,7 +12,7 @@ interface IPageModelOptions {
   backgroundColor?: string,
 };
 
-const defaultSize = { width: 1000, height: 1000, };
+const defaultSize = { width: 800, height: 600, };
 
 class PageModel extends BaseEmitter<PageEvents> implements IPage {
   private id: string;
@@ -64,6 +64,10 @@ class PageModel extends BaseEmitter<PageEvents> implements IPage {
     if(item === this.currentItem) {
       this.setCurrentItem(null);
     }
+  }
+  clearItems () {
+    this.items = [];
+    this.emit('itemsChange', this.items);
   }
   createItem(size: ISize, position: IPosition, cmpt: IComponent) {
     const item = new ItemModel({ size, position, rotate: 0, component: cmpt });
