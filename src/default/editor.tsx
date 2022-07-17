@@ -11,7 +11,9 @@ import decoration1Component from './components/decoration1Component';
 import decoration2Component from './components/decoration2Component';
 import capsuleChartComponent from './components/capsuleChartComponent';
 import activeRingChartComponent from './components/activeRingChartComponent';
-import pieChartComponent from './components/pieChartComponent';
+import pieChartComponent from './components/charts/pieChartComponent';
+import lineChartComponent from './components/charts/lineChartComponent';
+import barChartComponent from './components/charts/barChartComponent';
 
 import textComponent from './components/textComponent';
 import ColorPicker from '../editor-core/components/ColorPicker';
@@ -31,6 +33,8 @@ editor.resisterComponent('decoration2', decoration2Component);
 editor.resisterComponent('capsuleChart', capsuleChartComponent);
 editor.resisterComponent('activeRingChart', activeRingChartComponent);
 editor.resisterComponent('pieChart', pieChartComponent);
+editor.resisterComponent('lineChart', lineChartComponent);
+editor.resisterComponent('barChart', barChartComponent);
 editor.resisterComponent('text', textComponent);
 
 editor.resisterInputType('input', <Input />);
