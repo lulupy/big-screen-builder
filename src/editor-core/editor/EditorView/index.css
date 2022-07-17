@@ -30,8 +30,12 @@
   background: #fff;
   overflow-y: auto;
 }
+.editor__menu{
+  border-right: 1px solid #ccc;
+}
 .editor__config{
   width: 300px;
+  border-left: 1px solid #ccc;
 }
 .editor__page{
   flex-grow: 1;

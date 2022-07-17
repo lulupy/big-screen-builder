@@ -1,6 +1,6 @@
-import { ComponentModel } from "../../editor-core";
+import { ComponentModel } from "../../../editor-core";
 import { BorderBox1 } from "@jiaminghi/data-view-react";
-import DataVWrapper from "./datav-support/DataVWrapper";
+import DataVWrapper from "../datav-support/DataVWrapper";
 
 
 const Component = ({ properties }: any) => {
@@ -15,7 +15,7 @@ const Component = ({ properties }: any) => {
 const box1Component = new ComponentModel({
   name: 'box1',
   label: 'box1',
-  icon: '',
+  icon: require('../../icons/box1-white.png'),
   properties: [
     { name: 'backgroundColor', label: '背景色	',  type: 'input' },
   ],

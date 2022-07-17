@@ -11,6 +11,8 @@ interface IPageViewProps {
   page: IPage,
 }
 
+const backgroundImage = 'http://datav-react.jiaminghi.com/demo/electronic-file/static/media/bg.110420cf.png';
+
 const PageView = ({ page }:IPageViewProps) => {
   const ref = React.useRef<HTMLDivElement | null>(null);
   const [{size, backgroundColor}, setConfig] = React.useState<Omit<IPageConfig, 'scaleMode'>>(page.getConfig());
@@ -76,7 +78,16 @@ const PageView = ({ page }:IPageViewProps) => {
   return (
     <div
       ref={ref}
-      style={{width, height, opacity, backgroundColor}}
+      style={{
+        width,
+        height,
+        opacity,
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
+        backgroundColor,
+        // backgroundImage: `url(${backgroundImage})`,
+
+      }}
       className="page"
       onClick={handlePageClick}
     >

@@ -58,7 +58,7 @@ const Component = ({ properties, dataSource }: IComponentProps) => {
 const activeRingChartComponent = new ComponentModel({
   name: 'lineChart',
   label: '折线图',
-  icon: '',
+  icon: require('../../icons/line-chart.png'),
   properties: [
     { name: 'title', label: '标题',  type: 'input' },
     { name: 'color', label: '文字颜色',  type: 'color' },

@@ -1,0 +1,19 @@
+.component-view{
+  
+  text-align: center;
+  border: 1px solid #ccc;
+  margin: 10px 15px;
+}
+.component-view span{
+  display: block;
+  background: #ccc;
+}
+.component-view__img{
+  height: 100px;
+  line-height: 100px;
+  overflow: hidden;
+  background: #eee;
+}
+.component-view__img img{
+  width: 60%;
+}

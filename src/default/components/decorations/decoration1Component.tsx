@@ -1,7 +1,7 @@
-import { ComponentModel } from "../../editor-core";
+import { ComponentModel } from "../../../editor-core";
 import { Decoration1 } from "@jiaminghi/data-view-react";
-import DataVWrapper from './datav-support/DataVWrapper';
-import { IComponentProps } from "../../editor-core/interface";
+import DataVWrapper from '../datav-support/DataVWrapper';
+import { IComponentProps } from "../../../editor-core/interface";
 
 
 
@@ -24,7 +24,7 @@ const Component = ({ properties, shape }: IComponentProps) => {
 const decoration1Component = new ComponentModel({
   name: 'decoration1',
   label: '装饰1',
-  icon: '',
+  icon: require('../../icons/decoration1-white.png'),
   properties: [
     { name: 'backgroundColor', label: '背景色	',  type: 'input' },
   ],

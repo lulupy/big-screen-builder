@@ -1,7 +1,8 @@
 import React, { CSSProperties } from 'react';
 import { useDrag } from 'react-dnd';
-import { COMPONENT_TYPE } from '../constants';
-import { IComponent } from './IComponent';
+import { COMPONENT_TYPE } from '../../constants';
+import { IComponent } from '../IComponent';
+import './index.css';
 
 interface IComponentViewProps {
   component: IComponent,
@@ -29,12 +30,17 @@ const ComponentView = ({ component }: IComponentViewProps) => {
 
 
   return (
-    <>
-      <div ref={drag} style={{ ...style, border: '1px solid #111' }}>
-        <img src="" alt="" />
-        <span>{component.label}</span>
+    <div
+      ref={drag}
+      className="component-view"
+      style={{ ...style }}
+    >
+      <span>{component.label}</span>
+      <div className='component-view__img'>
+        <img src={component.icon} alt="" />
       </div>
-    </>
+    </div>
+
   );
 };
 

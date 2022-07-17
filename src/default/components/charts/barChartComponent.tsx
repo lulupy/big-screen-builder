@@ -59,7 +59,7 @@ const Component = ({ properties, dataSource, shape }: IComponentProps) => {
 const activeRingChartComponent = new ComponentModel({
   name: 'barChart',
   label: '条形图',
-  icon: '',
+  icon: require('../../icons/bar-chart.png'),
   properties: [
     { name: 'title', label: '标题',  type: 'input' },
     { name: 'color', label: '文字颜色',  type: 'color' },

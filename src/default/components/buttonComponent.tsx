@@ -21,7 +21,7 @@ const Button = ({ eventBus }: IComponentProps) => {
 const buttonComponent = new ComponentModel({
   name: 'button',
   label: '按钮',
-  icon: '',
+  icon: require('../icons/button.png'),
   properties: [],
   defaultSize: { width: 100, height: 50 },
   actions: [],

@@ -1,16 +1,16 @@
 import { Input, InputNumber } from 'antd';
 import { EditorModel, PageModel } from '../editor-core';
 import buttonComponent from './components/buttonComponent';
-import imageComponent from './components/imageComponent';
-import tableComponent from './components/tableComponent';
-import testComponent from './components/testComponent';
+// import imageComponent from './components/imageComponent';
+// import tableComponent from './components/tableComponent';
+// import testComponent from './components/testComponent';
 
-import box1Component from './components/box1Component';
-import box3Component from './components/box3Component';
-import decoration1Component from './components/decoration1Component';
-import decoration2Component from './components/decoration2Component';
-import capsuleChartComponent from './components/capsuleChartComponent';
-import activeRingChartComponent from './components/activeRingChartComponent';
+import box1Component from './components/boxs/box1Component';
+import box3Component from './components/boxs/box3Component';
+import decoration1Component from './components/decorations/decoration1Component';
+import decoration2Component from './components/decorations/decoration2Component';
+// import capsuleChartComponent from './components/capsuleChartComponent';
+// import activeRingChartComponent from './components/activeRingChartComponent';
 import pieChartComponent from './components/charts/pieChartComponent';
 import lineChartComponent from './components/charts/lineChartComponent';
 import barChartComponent from './components/charts/barChartComponent';
@@ -23,15 +23,17 @@ import ColorPicker from '../editor-core/components/ColorPicker';
 const editor = new EditorModel();
 
 editor.resisterComponent('button', buttonComponent);
-editor.resisterComponent('image', imageComponent);
-editor.resisterComponent('test', testComponent);
-editor.resisterComponent('table', tableComponent);
+// editor.resisterComponent('image', imageComponent);
+// editor.resisterComponent('test', testComponent);
+// editor.resisterComponent('table', tableComponent);
 editor.resisterComponent('box1', box1Component);
 editor.resisterComponent('box3', box3Component);
 editor.resisterComponent('decoration1', decoration1Component);
 editor.resisterComponent('decoration2', decoration2Component);
-editor.resisterComponent('capsuleChart', capsuleChartComponent);
-editor.resisterComponent('activeRingChart', activeRingChartComponent);
+
+// editor.resisterComponent('capsuleChart', capsuleChartComponent);
+// editor.resisterComponent('activeRingChart', activeRingChartComponent);
+
 editor.resisterComponent('pieChart', pieChartComponent);
 editor.resisterComponent('lineChart', lineChartComponent);
 editor.resisterComponent('barChart', barChartComponent);

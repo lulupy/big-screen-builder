@@ -1,8 +1,10 @@
+import { url } from 'inspector';
 import React from 'react';
 import {IPage} from '../editor-core';
 import { ISize, ScaleMode } from '../editor-core/page/IPage';
 import ItemWrapper from './ItemWrapper';
 
+const backgroundImage = 'http://datav-react.jiaminghi.com/demo/electronic-file/static/media/bg.110420cf.png';
 
 interface IPreviewProps {
   page: IPage,
@@ -96,7 +98,10 @@ const Preview = ({ page }: IPreviewProps) => {
       style={{
         width: size.width,
         height: size.height,
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
         backgroundColor,
+        backgroundImage: `url(${backgroundImage})`,
         ...style,
       }}
     >
