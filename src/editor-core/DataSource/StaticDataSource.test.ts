@@ -85,4 +85,28 @@ describe('StaticDataSource.test', () => {
       { city: '北京', coordinateX: 201, y: 101 },
     ]);
   });
+
+  it('dataMaps is empty', async () => {
+    const filters: string[] = [];
+    const dataMaps = {name: '', value: ''};
+    const json = [
+      { name: '可口', value: '100' },
+    ];
+    const dataSouce = new StaticDataSource({ filters, dataMaps, json: JSON.stringify(json, null, 2) });
+    expect(await dataSouce.getData()).toEqual([
+      { name: '可口', value: '100' },
+    ]);
+  });
+
+  it('dataMaps has the same value with the key', async () => {
+    const filters: string[] = [];
+    const dataMaps = {name: 'name', value: ''};
+    const json = [
+      { name: '可口', value: '100' },
+    ];
+    const dataSouce = new StaticDataSource({ filters, dataMaps, json: JSON.stringify(json, null, 2) });
+    expect(await dataSouce.getData()).toEqual([
+      { name: '可口', value: '100' },
+    ]);
+  });
 });

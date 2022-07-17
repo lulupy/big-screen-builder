@@ -23,9 +23,10 @@ describe('EditorModel', () => {
       delete item.id;
     })
     expect(data).toEqual({
+      "backgroundColor": "#fff",
       "size": {
-        "width": 1000,
-        "height": 1000
+        "width": 800,
+        "height": 600
       },
       "scaleMode": 0,
       "items": [

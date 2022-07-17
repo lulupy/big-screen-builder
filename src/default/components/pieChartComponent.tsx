@@ -58,7 +58,10 @@ const activeRingChartComponent = new ComponentModel({
     { name: 'color', label: '文字颜色',  type: 'color' },
   ],
   defaultSize: { width: 200, height: 200 },
-  dataFields: [],
+  dataFields: [
+    { name: 'name' },
+    { name: 'value' },
+  ],
   actions: [],
   events: [],
   Component: Component,

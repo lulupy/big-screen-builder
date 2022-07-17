@@ -11,6 +11,7 @@ const ViewDataResult = ({ item } : IViewDataResultProps) => {
   const [resultData, setResultData] = React.useState<Record<string, unknown>[]>([]);
   const refresh = React.useCallback(async () => {
     const { dataMaps, dataSource, filters } = item.getDataConfigValue();
+    console.log(dataMaps, dataSource, filters);
     // todo: 目前是写死的StaticDataSource, 后续会有不同的DataSource, 需要做成可扩展的方式
     const dataSourceInstance =  new StaticDataSource({
       filters,

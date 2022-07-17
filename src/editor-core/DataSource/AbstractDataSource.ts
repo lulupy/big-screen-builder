@@ -29,8 +29,11 @@ abstract class AbstractDataSource implements IDataSource {
     data.forEach(record => {
       // const newRecord: Record<string, unknown> = {};
       Object.entries(this.dataMaps).forEach(([key, keyMap]: [string, string]) => {
-        record[key] = record[keyMap];
-        delete record[keyMap];
+        if(keyMap && key !== keyMap) {
+          record[key] = record[keyMap];
+          delete record[keyMap];
+
+        }
         
       })
       // return newRecord;
