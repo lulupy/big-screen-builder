@@ -42,7 +42,20 @@ function ItemContextMenu({ item, children }: IProps) {
       {/* NOTICE: id must be unique between EVERY <ContextMenuTrigger> and <ContextMenu> pair */}
       {/* NOTICE: inside the pair, <ContextMenuTrigger> and <ContextMenu> must have the same id */}
  
-      <ContextMenuTrigger id={`item-contextmenu-${item.id}`}>
+      <ContextMenuTrigger
+        // 当holdToDisplay>=0时, 单击也会显示菜单, 这里设为-1
+        // mousedown启动一个定时器, 延长holdToDisplay后显示菜单, 如果在holdToDisplay时间内就mouseup就取消定时器
+        // 相关源码: https://github.com/vkbansal/react-contextmenu/blob/master/src/ContextMenuTrigger.js#L39-L46
+        holdToDisplay={-1}
+        attributes={{
+          onClick: () => console.log('Click'),
+          onMouseDown: () => console.log('MouseDown'),
+          onMouseUp: () => console.log('MouseUp'),
+          onContextMenu: () => console.log('ContextMenu'),
+        }}
+        
+        id={`item-contextmenu-${item.id}`}
+      >
         {children}
       </ContextMenuTrigger>
  
