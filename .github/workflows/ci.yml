@@ -10,9 +10,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@main
     - name: Install and Build
-        run: |
-          yarn install
-          yarn build
+        run: yarn install && yarn build
     - name: Build and Deploy
       uses: JamesIves/github-pages-deploy-action@4.1.1
       with:
