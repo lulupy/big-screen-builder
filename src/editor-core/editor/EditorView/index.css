@@ -12,6 +12,7 @@
   flex-shrink: 0;
   height: 50px;
   align-items: center;
+  justify-content: center;
   border-bottom: 1px solid #ccc;
   background: #fff;
 }

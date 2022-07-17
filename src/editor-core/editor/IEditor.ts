@@ -8,5 +8,6 @@ export interface  IEditor {
   getComponent: (name: string) => IComponent,
   getInputType: (name: string) => React.ReactElement,
   getPage: () => IPage | null,
-  setPage: (page: IPage) => void,
+  // 禁止设置page, 保持page对象不可变
+  // setPage: (page: IPage) => void,
 }

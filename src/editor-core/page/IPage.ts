@@ -3,6 +3,7 @@ import { IComponent } from "../component";
 import { IItem } from "../item/IItem";
 import { DraggableData } from "react-draggable";
 
+
 export interface ISize {
   width: number,
   height: number,
@@ -61,4 +62,5 @@ export interface IPage extends IBaseEmitter<PageEvents> {
   topItem: (item: IItem) => boolean,
   bottomItem: (item: IItem) => boolean,
   serialize: () => any,
+  deserialize: (params: any) => any,
 }

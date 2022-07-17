@@ -1,5 +1,4 @@
 import { ComponentModel } from '../component';
-import { PageModel } from '../page';
 import EditorModel  from './EditorModel';
 
 describe('EditorModel', () => {
@@ -11,8 +10,6 @@ describe('EditorModel', () => {
     editor.resisterComponent('button', buttonComponent);
     editor.resisterComponent('image', imageComponent);
 
-    const page = new PageModel();
-    editor.setPage(page);
     buttonComponent.addToPage({width: 10, height: 10}, {x: 10, y: 10});
     imageComponent.addToPage({width: 20, height: 20}, {x: 20, y: 20});
     buttonComponent.addToPage({width: 30, height: 30}, {x: 30, y: 30});
@@ -25,8 +22,8 @@ describe('EditorModel', () => {
     expect(data).toEqual({
       "backgroundColor": "#fff",
       "size": {
-        "width": 800,
-        "height": 600
+        "width": 1920,
+        "height": 1080
       },
       "scaleMode": 0,
       "items": [

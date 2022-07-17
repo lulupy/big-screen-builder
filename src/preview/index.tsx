@@ -96,16 +96,25 @@ const Preview = ({ page }: IPreviewProps) => {
   return (
     <div
       style={{
-        width: size.width,
-        height: size.height,
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: 'cover',
+        width: '100vw',
+        height: '100vh',
         backgroundColor,
-        backgroundImage: `url(${backgroundImage})`,
-        ...style,
       }}
     >
-      {items.map(item => <ItemWrapper item={item} />)}
+      <div
+        style={{
+          width: size.width,
+          height: size.height,
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: 'cover',
+          
+          backgroundImage: `url(${backgroundImage})`,
+          ...style,
+        }}
+      >
+        {items.map(item => <ItemWrapper item={item} />)}
+      </div>
+
     </div>
   )
 }

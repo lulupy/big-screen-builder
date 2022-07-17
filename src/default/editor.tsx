@@ -47,9 +47,6 @@ editor.resisterInputType('color', <ColorPicker />);
 const data = localStorage.getItem('data');
 if(data) {
   editor.deserializePage(JSON.parse(data))
-} else {
-  const page = new PageModel();
-  editor.setPage(page);
-}
+} 
 
 export default editor;

@@ -12,7 +12,7 @@ interface IPageModelOptions {
   backgroundColor?: string,
 };
 
-const defaultSize = { width: 800, height: 600, };
+const defaultSize = { width: 1920, height: 1080, };
 
 class PageModel extends BaseEmitter<PageEvents> implements IPage {
   private id: string;
@@ -138,14 +138,13 @@ class PageModel extends BaseEmitter<PageEvents> implements IPage {
       items: this.items.map(item => item.serialize()),
     };
   }
-  static deserialize({data, editor}:  DeserializeEvent<PageModel>) {
-    const page = new PageModel({
-      size: data.size,
-      scaleMode: data.scaleMode,
-      backgroundColor: data.backgroundColor,
-    });
-    page.items = data.items.map(item => ItemModel.deserialize({ data: item, editor }));
-    return page;
+  deserialize({data, editor}:  DeserializeEvent<PageModel>) {
+    this.size = data.size;
+    this.scaleMode = data.scaleMode;
+    this.backgroundColor = data.backgroundColor;
+    this.items = data.items.map(item => ItemModel.deserialize({ data: item, editor }));
+    this.emit('itemsChange', this.items);
+    return this;
   }
 }
 export default PageModel;

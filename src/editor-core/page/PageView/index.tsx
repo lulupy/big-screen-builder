@@ -85,7 +85,7 @@ const PageView = ({ page }:IPageViewProps) => {
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
         backgroundColor,
-        // backgroundImage: `url(${backgroundImage})`,
+        backgroundImage: `url(${backgroundImage})`,
 
       }}
       className="page"

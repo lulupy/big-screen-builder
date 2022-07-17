@@ -45,7 +45,7 @@ class ObjectBank<T> {
 class EditorModel implements IEditor {
   protected componentBank: IObjectBank<IComponent>;
   protected inputTypeBank: IObjectBank<React.ReactElement>;
-  protected page: IPage | null;
+  protected page: IPage;
   
   constructor() {
     // 这里的componentBank和page都是直接创建
@@ -54,7 +54,7 @@ class EditorModel implements IEditor {
     // 依赖接口不依赖具体实现的好处之一是，当写测试，可以构造mock对象传入
     this.componentBank = new ObjectBank<IComponent>();
     this.inputTypeBank = new ObjectBank<React.ReactElement>();
-    this.page = null;
+    this.page = new PageModel();
   }
 
   resisterComponent(name:string, cmpt: IComponent) {
@@ -73,10 +73,10 @@ class EditorModel implements IEditor {
   getComponent(name: string) {
     return this.componentBank.getObject(name);
   }
-  setPage(page: IPage) {
-    this.page = page;
-    this.getComponents().forEach(cmpt => cmpt.setPage(this.page));
-  }
+  // setPage(page: IPage) {
+  //   this.page = page;
+  //   this.getComponents().forEach(cmpt => cmpt.setPage(this.page));
+  // }
   getPage() {
     return this.page;
   }
@@ -97,8 +97,7 @@ class EditorModel implements IEditor {
   }
 
   deserializePage(data: ReturnType<EditorModel['serializePage']>) {
-    const page =  PageModel.deserialize({ data, editor: this });
-    this.setPage(page);
+    const page =  this.page.deserialize({ data, editor: this });
     return page;
   }
 }
